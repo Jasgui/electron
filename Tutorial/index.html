@@ -1,26 +1,284 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>Hello from Electron renderer!</title>
-  </head>
-  <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
-    <p id='info'></p>
-      <h2>What's your name?</h2>
-      <textarea id='nameinput'></textarea>
-      <button id='firstbutton'>Click here!</button>
-      <h1 id='texttochange'></h1>
-  </body>
-    <script src="./renderer.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/; script-src 'self'; font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data:; style-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com/" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <title class="ui large header">Hello from Electron renderer!</title>
+</head>
+<style>
+    td {
+        padding: 0px;
+    }
+
+</style>
+
+<body>
+
+    <div class="ui menu">
+        <a class="active item" id='menuTutorial'>
+            Tutorial
+        </a>
+        <a class="item" id='menuTrainer'>
+            Trainer
+        </a>
+        <div class="right menu">
+            <div class="ui pointing dropdown link item">
+                <span class="text">Help</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item" id='menuStem'>Stems</div>
+                    <div class="item" id='menuEndings'>Endings</div>
+                    <div class="item" id='menuVocal'>Vocal harmony</div>
+                    <div class="item" id='menuConsonant'>Consonant gradation</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="left floated one wide column"></div>
+            <div class="left floated nine wide column">
+                <div class="ui breadcrumb" id="breadcrumbs">
+                    <a class="active section" id='menuIntro'>Intro</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" id='menuStep1'>Step 1</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" id='menuStep2'>Step 2</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" id='menuStep3'>Step 3</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" id='menuStep4'>Step 4</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" id='menuStep5'>Step 5</a>
+                </div>
+            </div>
+            <div class="right floated five wide column"></div>
+            <div class="right floated one wide column"></div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="left floated one wide column"></div>
+            <div class="left floated nine wide column">
+                <div class="ui grid">
+                    <div class="row">
+                        <div class="left floated sixteen wide column" id='mainText'>
+                            <h1>Welcome to Work My Cases!</h1>
+                            Hello!
+                            Are you familiar with the 5-step routine for cases? <br />
+                            <button class='ui button' id='yesButton'>Yes</button>
+                            <button class='ui button' id='noButton'>No</button>
+                            <button class='ui button' id='remindButton'>Remind me?</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left floated sixteen wide column">
+                            <button class='ui button' id='nextButton'>Next</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+            <div class="right floated five wide column" id='helperText'>
+
+
+                <table class="ui compact table" id="tableStems">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Ends in:</th>
+                            <th>Stem 1</th>
+                            <th>Stem 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td data-label="Type">1</td>
+                            <td data-label="Name">-e<br />liik<b>e</b></td>
+                            <td data-label="Age">-ee<br />lii<i>kk</i><b>ee</b>-</td>
+                            <td data-label="Job">-e<br />liik<b>e</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">2</td>
+                            <td data-label="Name">-i<br />tunt<b>i</b></td>
+                            <td data-label="Age">-i<br />tunt<b>i</b>-</td>
+                            <td data-label="Job">-i<br />tunt<b>i</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">3</td>
+                            <td data-label="Name">-i<br />kiv<b>i</b></td>
+                            <td data-label="Age">-e<br />kiv<b>e</b>-</td>
+                            <td data-label="Job">-e<br />kiv<b>e</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">4</td>
+                            <td data-label="Name">-i<br />kiel<b>i</b></td>
+                            <td data-label="Age">-e<br />kiel<b>e</b>-</td>
+                            <td data-label="Job">-<br />kiel-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">5</td>
+                            <td data-label="Name">-vowel<br />tal<b>o</b></td>
+                            <td data-label="Age">-vowel<br />tal<b>o</b>-</td>
+                            <td data-label="Job">-vowel<br />tal<b>o</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">6</td>
+                            <td data-label="Name">-(s)i<br />ve<b>si</b></td>
+                            <td data-label="Age">-te<br />ve<b>te</b>-</td>
+                            <td data-label="Job">-t<br />ve<b>t</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">7</td>
+                            <td data-label="Name">-nen<br />nai<b>nen</b></td>
+                            <td data-label="Age">-se<br />nai<b>se</b>-</td>
+                            <td data-label="Job">-s<br />nai<b>s</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">8</td>
+                            <td data-label="Name">-as/äs/is<br />porr<b>as</b></td>
+                            <td data-label="Age">-aa<br />po<i>rt</i><b>aa</b>-</td>
+                            <td data-label="Job">-as<br />porr<b>as</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">9</td>
+                            <td data-label="Name">-us/ys<br />ajat<b>us</b></td>
+                            <td data-label="Age">-ukse<br />ajat<b>ukse</b>-</td>
+                            <td data-label="Job">-us<br />ajat<b>us</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">10</td>
+                            <td data-label="Name">-vowel+vowel+s<br />hyv<b>yys</b></td>
+                            <td data-label="Age">-te<br />hyvyy<b>te</b>-</td>
+                            <td data-label="Job">-t<br />hyvyy<b>t</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">11</td>
+                            <td data-label="Name">-in<br />yd<b>in</b></td>
+                            <td data-label="Age">-ime<br />y<i>t</i><b>ime</b>-</td>
+                            <td data-label="Job">-in<br />yd<b>in</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">12</td>
+                            <td data-label="Name">-ton/tön<br />työ<b>tön</b></td>
+                            <td data-label="Age">-ttoma/ttömä<br />työ<b>ttömä</b>-</td>
+                            <td data-label="Job">-ton/tön<br />työ<b>tön</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">13</td>
+                            <td data-label="Name">-ut/yt<br />ol<b>ut</b></td>
+                            <td data-label="Age">-ue<br />ol<b>ue</b>-</td>
+                            <td data-label="Job">-ut<br />ol<b>ut</b>-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type">14</td>
+                            <td data-label="Name">other cons.<br />aske<b>l</b></td>
+                            <td data-label="Age">-e<br />askel<b>e</b>-</td>
+                            <td data-label="Job">-<br />askel-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="ui compact table" id="tableCaseEndings">
+                    <thead>
+                        <tr>
+                            <th>Case</th>
+                            <th>Ending</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td data-label="Case">nominative</td>
+                            <td data-label="Ending">-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">accusative</td>
+                            <td data-label="Ending">-n</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">genitive</td>
+                            <td data-label="Ending">-n</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">partitive</td>
+                            <td data-label="Ending">-a/ä | -ta/tä | -tta/ttä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">inessive</td>
+                            <td data-label="Ending">-ssa/ssä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">elative</td>
+                            <td data-label="Ending">-sta/stä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">illative</td>
+                            <td data-label="Ending">-vowel+n | -h+vowel+n | -seen</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">adessive</td>
+                            <td data-label="Ending">-lla/llä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">ablative</td>
+                            <td data-label="Ending">-lta/ltä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">allative</td>
+                            <td data-label="Ending">-lle</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">essive</td>
+                            <td data-label="Ending">-na/nä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Case">translative</td>
+                            <td data-label="Ending">-ksi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+
+            </div>
+            <div class="right floated one wide column"></div>
+        </div>
+        <div class="row">
+            <div class="left floated one wide column"></div>
+            <div class="left floated nine wide column">
+                <button class='ui button' id='backButton'>Back</button>
+                <!--                <button class='ui button' id='nextButton'>Next</button>-->
+            </div>
+            <div class="right floated five wide column"></div>
+            <div class="right floated one wide column"></div>
+        </div>
+    </div>
+
+
+
+
+</body>
+<link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/semantic.min.css">
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="Semantic-UI-CSS-master/semantic.min.js"></script>
+
+<script src="./renderer.js"></script>
+
 </html>
