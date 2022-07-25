@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/; script-src 'self'; font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data:; style-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com/" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/ 'unsafe-inline'; script-src 'self'; font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data:; style-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com/" />
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
     <title class="ui large header">Hello from Electron renderer!</title>
 </head>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="left floated one wide column"></div>
             <div class="left floated nine wide column">
-                <div class="ui breadcrumb" id="breadcrumbs">
+                <div class="ui breadcrumb" id="breadcrumbs" style="display: none">
                     <a class="active section" id='menuIntro'>Intro</a>
                     <i class="right angle icon divider"></i>
                     <a class="section" id='menuStep1'>Step 1</a>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="row">
                         <div class="left floated sixteen wide column">
-                            <button class='ui button' id='nextButton'>Next</button>
+                            <button class='ui button' id='nextButton' style="display: none">Next</button>
                         </div>
                     </div>
 
@@ -94,13 +94,13 @@
             <div class="right floated five wide column" id='helperText'>
 
 
-                <table class="ui compact table" id="tableStems">
+                <table class="ui compact striped table" id="tableStems" style="display: none">
                     <thead>
                         <tr>
                             <th>Type</th>
                             <th>Ends in:</th>
                             <th>Stem 1</th>
-                            <th>Stem 2</th>
+                            <th>Stem 2 (partitive)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,7 +129,7 @@
                             <td data-label="Age">-e<br />kiel<b>e</b>-</td>
                             <td data-label="Job">-<br />kiel-</td>
                         </tr>
-                        <tr>
+                        <tr id="rowEndByVowel">
                             <td data-label="Type">5</td>
                             <td data-label="Name">-vowel<br />tal<b>o</b></td>
                             <td data-label="Age">-vowel<br />tal<b>o</b>-</td>
@@ -192,7 +192,7 @@
                     </tbody>
                 </table>
 
-                <table class="ui compact table" id="tableCaseEndings">
+                <table class="ui compact striped table" id="tableCaseEndings" style="display: none">
                     <thead>
                         <tr>
                             <th>Case</th>
@@ -229,7 +229,7 @@
                             <td data-label="Case">illative</td>
                             <td data-label="Ending">-vowel+n | -h+vowel+n | -seen</td>
                         </tr>
-                        <tr>
+                        <tr id="rowAdessive">
                             <td data-label="Case">adessive</td>
                             <td data-label="Ending">-lla/llä</td>
                         </tr>
@@ -253,6 +253,136 @@
                 </table>
 
 
+                <table class="ui compact table" id="tableVocal1" style="display: none">
+                    <thead>
+                        <tr>
+                            <th class="center aligned">Back vowels</th>
+                            <th class="center aligned">Front vowels</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td data-label="Back vowels" class="center aligned">a</td>
+                            <td data-label="Front vowels" class="center aligned">ä</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Back vowels" class="center aligned">o</td>
+                            <td data-label="Front vowels" class="center aligned">ö</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Back vowels" class="center aligned">u</td>
+                            <td data-label="Front vowels" class="center aligned">y</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="ui compact table" id="tableVocal2" style="display: none">
+                    <thead>
+                        <tr>
+                            <th class="center aligned">Neutral vowels</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td data-label="Neutral vowels" class="center aligned">e</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Neutral vowels" class="center aligned">i</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+                <table class="ui compact table" id="tableCons" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th class="center aligned">Strong grade / open syllable</th>
+                            <th class="center aligned">Weak grade / closed syllable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td data-label="Type" class="center aligned">1</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">pp</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">p</td>
+                        </tr>
+                        <tr id="rowTT">
+                            <td data-label="Type" class="center aligned">2</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">tt</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">t</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">3</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">kk</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">k</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">4</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">p</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">v</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">5</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">t</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">d</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">6</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">k</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">∅</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">7</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">uku / yky</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">uvu / yvy</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">8</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">mp</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">mm</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">9</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">nt</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">nn</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">10</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">nk</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">ng</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">11</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">lt</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">ll</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">12</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">rt</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">rr</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">13</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">ht</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">hd</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">14</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">lk + e/i</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">lj</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Type" class="center aligned">15</td>
+                            <td data-label="Strong grade / open syllable" class="center aligned">rk + e/i</td>
+                            <td data-label="Weak grade / closed syllable" class="center aligned">rj</td>
+                        </tr>
+
+                    </tbody>
+                </table>
 
 
 
@@ -262,7 +392,7 @@
         <div class="row">
             <div class="left floated one wide column"></div>
             <div class="left floated nine wide column">
-                <button class='ui button' id='backButton'>Back</button>
+                <button class='ui button' id='backButton' style="display: none">Back</button>
                 <!--                <button class='ui button' id='nextButton'>Next</button>-->
             </div>
             <div class="right floated five wide column"></div>
