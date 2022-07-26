@@ -3,6 +3,8 @@ const dataResult = "kaupassa";
 const dataResultNoGradation = "kauppassa";
 const dataWordEnglish = "a shop";
 const dataWordFinnish = "kauppa";
+const dataCase = "inessive";
+const dataCaseTranslation = "in ... / inside ...";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -64,12 +66,21 @@ const helpLost = document.getElementById('helpLost');
 const inputField = document.getElementById('inputField');
 const trainerButton = document.getElementById('trainerButton');
 
-const stepTitle = document.getElementById('stepTitle');
-const stepPrompt = document.getElementById('stepPrompt');
-const stepHelpButton = document.getElementById('stepHelpButton');
-const stepExplanation = document.getElementById('stepExplanation');
-const stepAnswer = document.getElementById('stepAnswer');
-const stepReveal = document.getElementById('stepReveal');
+
+const stepAnswer1 = document.getElementById('stepAnswer1');
+const stepPrompt1 = document.getElementById('stepPrompt1');
+const stepInput1 = document.getElementById('stepInput1');
+const stepHelpButton1 = document.getElementById('stepHelpButton1');
+const stepExplanation1 = document.getElementById('stepExplanation1');
+
+const stepAnswer2 = document.getElementById('stepAnswer2');
+const stepPrompt2 = document.getElementById('stepPrompt2');
+const stepInput2 = document.getElementById('stepInput2');
+const stepHelpButton2 = document.getElementById('stepHelpButton2');
+const stepExplanation2 = document.getElementById('stepExplanation2');
+const stepReveal2 = document.getElementById('stepReveal2');
+const stepConfirmButton2 = document.getElementById('stepConfirmButton2');
+
 
 
 
@@ -218,10 +229,78 @@ function trainer1() {
     gridTrainer.style.display = "";
 
     trainerText.innerHTML = "How would you say <b>" + dataPhrase + "</b> in Finnish?";
-
     inputField.focus();
 
+    /// WORD
+
+    stepAnswer1.innerHTML = dataWordFinnish;
+    stepPrompt1.innerHTML = "Do you know the Finnish word that means <b><i>" + dataWordEnglish + "</i></b>? If you do, try to type it here. If you need help, use the button.";
+
+    stepInput1.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+
+            if (stepInput1.value == dataWordFinnish) {
+
+                stepPrompt1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
+                stepAnswer1.style.display = "";
+                stepInput1.style.display = "none";
+
+            } else {
+
+                stepPrompt1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
+                stepAnswer1.style.display = "";
+                stepInput1.style.display = "none";
+
+            }
+
+
+        }
+
+    });
+
+
+    /// CASE
+
+    stepAnswer2.innerHTML = dataCase;
+    stepPrompt2.innerHTML = "So we are trying to say <i><b>" + dataPhrase + "</b></i> in Finnish. What case should you use to translate <i>" + dataCaseTranslation + "</i>?<br/><br/>If you need help, use the button.";
+
+    stepConfirmButton2.onclick = function () {
+
+        console.log(stepInput2.value);
+
+        if (stepInput2.value == dataCase) {
+
+            stepPrompt2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
+            stepInput2.style.display = "none";
+            stepConfirmButton2.style.display = "none";
+            stepHelpButton2.style.display = "none";
+            stepAnswer2.style.display = "";
+
+        } else {
+
+            stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button."
+            stepInput1.value = "";
+        }
+
+    }
+
 };
+
+
+
+stepHelpButton1.onclick = function () {
+
+    stepPrompt1.style.display = "none";
+
+    stepExplanation1.innerHTML = "The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
+    stepAnswer1.style.display = "";
+    stepInput1.style.display = "none";
+
+};
+
+
 
 trainerButton.onclick = function () {
 
