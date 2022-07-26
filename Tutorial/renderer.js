@@ -81,7 +81,7 @@ const stepExplanation2 = document.getElementById('stepExplanation2');
 const stepReveal2 = document.getElementById('stepReveal2');
 const stepConfirmButton2 = document.getElementById('stepConfirmButton2');
 
-
+const toHide1 = document.getElementById('toHide1');
 
 
 ///Initialisation
@@ -282,7 +282,7 @@ function trainer1() {
 
             stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button."
             stepInput1.value = "";
-        }
+        };
 
     }
 
@@ -292,14 +292,24 @@ function trainer1() {
 
 stepHelpButton1.onclick = function () {
 
-    stepPrompt1.style.display = "none";
-
+    toHide1.style.display = "none";
     stepExplanation1.innerHTML = "The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
     stepAnswer1.style.display = "";
-    stepInput1.style.display = "none";
 
 };
 
+stepHelpButton2.onclick = function () {
+
+    stepExplanation2.innerHTML = "I have opened a list of cases with their basic meanings on the right. Try to choose the right one with the help of the table.<br/><br/> If you're still having issues, the reveal <i class='eye slash icon'></i> button is there for you.";
+
+};
+
+stepReveal2.onclick = function () {
+
+    stepAnswer2.style.display = "";
+
+
+};
 
 
 trainerButton.onclick = function () {
