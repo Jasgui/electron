@@ -1,3 +1,10 @@
+const dataPhrase = "in the shop";
+const dataResult = "kaupassa";
+const dataResultNoGradation = "kauppassa";
+const dataWordEnglish = "a shop";
+const dataWordFinnish = "kauppa";
+
+//////////////////////////////////
 const mainText = document.getElementById('mainText');
 const helperText = document.getElementById('helperText');
 
@@ -32,8 +39,43 @@ const tableCons = document.getElementById('tableCons');
 const rowEndByVowel = document.getElementById('rowEndByVowel');
 const rowAdessive = document.getElementById('rowAdessive');
 const rowTT = document.getElementById('rowTT');
+
+const gridTutorial = document.getElementById('gridTutorial');
+const gridTrainer = document.getElementById('gridTrainer');
+const trainerText = document.getElementById('trainerText');
+const recapStemType = document.getElementById('recapStemType');
+const recapStem = document.getElementById('recapStem');
+const recapCase = document.getElementById('recapCase');
+const recapEnding = document.getElementById('recapEnding');
+const recapGradationType = document.getElementById('recapGradationType');
+const recapResult = document.getElementById('recapResult');
+const recapWord = document.getElementById('recapWord');
+
+const helpCase = document.getElementById('helpCase');
+const helpStemType = document.getElementById('helpStemType');
+const helpStems = document.getElementById('helpStems');
+const helpChooseStem = document.getElementById('helpChooseStem');
+const helpEnding = document.getElementById('helpEnding');
+const helpEndingVariant = document.getElementById('helpEndingVariant');
+const helpGradationType = document.getElementById('helpGradationType');
+const helpGradation = document.getElementById('helpGradation');
+const helpLost = document.getElementById('helpLost');
+
+const inputField = document.getElementById('inputField');
+const trainerButton = document.getElementById('trainerButton');
+const helpButton = document.getElementById('helpButton');
+const explanations = document.getElementById('explanations');
+
 ///Initialisation
 
+
+/*
+fetch("data.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(jsondata => console.log(jsondata));
+*/
 
 $('.dropdown')
     .dropdown({
@@ -46,6 +88,9 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 });
+
+$('.ui.accordion')
+    .accordion();
 
 
 
@@ -157,6 +202,110 @@ function step5() {
 };
 
 
+function trainer1() {
+    gridTutorial.style.display = "none";
+    gridTrainer.style.display = "";
+
+    trainerText.innerHTML = "How would you say <b>" + dataPhrase + "</b> in Finnish?";
+
+    inputField.focus();
+
+};
+
+trainerButton.onclick = function () {
+
+    console.log(inputField.value);
+    console.log("or");
+    console.log(inputField.innerHTML);
+
+
+    if (inputField.value == dataResult) {
+
+        $('.ui.basic.modal')
+            .modal('show');
+    } else if (inputField.value == dataResultNoGradation) {
+        console.log("almost, you just missed the gradation")
+    };
+
+
+};
+
+
+inputField.addEventListener("keypress", function (event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+        trainerButton.click();
+    }
+
+});
+
+
+helpButton.onclick = function () {
+
+    if (helpButton.name == "firstStep") {
+
+        explanations.innerHTML = "TIP:<br/>The first step is to know what word you're going to use. Do you know how to say <b>" + dataWordEnglish + "</b> in Finnish? If you do, type it here:<br/><br/> <div class='ui transparent input'><input type='text' placeholder='' id='explanationInput'></div><br/>";
+        const explanationInput = document.getElementById('explanationInput');
+        explanationInput.focus();
+        helpButton.innerHTML = "<i class='question circle outline icon'></i>I don't know the word in Finnish!";
+        helpButton.name = "finnishWord";
+
+
+        explanationInput.addEventListener("keypress", function (event) {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                isWordEnglish(explanationInput.value);
+            }
+
+        });
+
+
+
+
+    } else if (helpButton.name == "finnishWord") {
+
+        var htmlText = "No worries, here's the word for you: <b>" + dataWordFinnish + "</b>. It means <b><i>" + dataWordEnglish + "</i></b> in English. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
+        updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
+
+
+    } else if (helpButton.name == "stemType") {
+
+
+
+    };
+
+
+
+
+};
+
+
+
+function isWordEnglish(inputWord) {
+
+    if (inputWord == dataWordFinnish) {
+
+        var htmlText = "Great! You know the word. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
+
+    } else {
+        var htmlText = "Oops... this is not the word I was thinking of.<br/>Let's use <b>" + dataWordFinnish + "</b>, ok? It means <b><i>" + dataWordEnglish + "</i></b> in English. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
+    };
+
+    updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
+
+};
+
+
+function updateHelp(text, tableCell, content, buttonText, buttonName) {
+
+    explanations.innerHTML = text;
+    window[tableCell].innerHTML = content;
+    helpButton.innerHTML = "<i class='question circle outline icon'></i>" + buttonText;
+    helpButton.name = buttonName;
+
+};
 
 
 menuStep1.onclick = function () {
@@ -215,12 +364,20 @@ function nextButtonParameters(text, destination, display) {
 
 menuTutorial.onclick = function () {
 
-    mainText.innerHTML = "something <b>new</b>";
-    nextButton.style.display = 'inline';
-    backButton.style.display = 'inline';
-
+    gridTrainer.style.display = "none";
+    gridTutorial.style.display = "";
+    intro();
 
 };
+
+menuTrainer.onclick = function () {
+
+    gridTrainer.style.display = "";
+    gridTutorial.style.display = "none";
+    trainer1();
+
+};
+
 
 nextButton.onclick = function () {
     console.log("bnjsq");

@@ -17,6 +17,9 @@
 
 <body>
 
+
+    <!-- TOP MENU -->
+
     <div class="ui menu">
         <a class="active item" id='menuTutorial'>
             Tutorial
@@ -36,8 +39,10 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+
+    <!-- GRID -->
 
     <div class="ui grid">
         <div class="row">
@@ -61,13 +66,12 @@
             <div class="right floated one wide column"></div>
         </div>
 
-
-
+        <!-- TUTORIAL GRID -->
 
         <div class="row">
             <div class="left floated one wide column"></div>
             <div class="left floated nine wide column">
-                <div class="ui grid">
+                <div class="ui grid" id='gridTutorial'>
                     <div class="row">
                         <div class="left floated sixteen wide column" id='mainText'>
                             <h1>Welcome to Work My Cases!</h1>
@@ -87,11 +91,135 @@
                 </div>
 
 
+                <!-- TRAINER GRID -->
+
+                <div class="ui grid" id='gridTrainer'>
+
+                    <!-- TEXT ROW -->
+
+                    <div class="row">
+                        <div class="left floated sixteen wide column" id='trainerText'>
+                            <h1>Text for the trainer!</h1>
+                        </div>
+                    </div>
+
+                    <!-- INPUT ROW -->
+
+                    <div class="row">
+                        <div class="left floated sixteen wide column">
+                            <div class="ui action huge input">
+                                <input type='text' placeholder="type here..." id="inputField">
+                                <button class='ui teal button' id="trainerButton">go!</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- EXPLANATIONS ROW -->
+
+                    <div class="row">
+                        <div class="left floated sixteen wide column">
+                            <div class="left floated sixteen wide column" id='explanations'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUTTONS ROW -->
+
+                    <div class="row">
+                        <div class="left floated sixteen wide column">
+                            <button class='ui teal basic button' id='helpButton' name='firstStep'><i class="question circle outline icon"></i>Help me with the first step!</button>
+                        </div>
+                    </div>
+
+                    <!-- RECAP TABLE ROW -->
+
+                    <div class="row">
+                        <div class="left floated six wide column">
+                            <br /><br />
+                            <table class="ui compact definition table" id="tableRecap">
+                                <tbody>
+                                    <tr>
+                                        <td class='one wide'>word</td>
+                                        <td class='one wide' id="recapWord"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>stem type</td>
+                                        <td id="recapStemType"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>stem</td>
+                                        <td id="recapStem"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>case</td>
+                                        <td id="recapCase"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ending</td>
+                                        <td id="recapEnding"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>gradation type</td>
+                                        <td id="recapGradationType"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>result</td>
+                                        <td id="recapResult"></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- HELP OPTIONS ROW -->
+
+                    <div class="row">
+                        <div class="left floated sixteen wide column">
+                            <br /><br />
+
+                            <div class="ui styled accordion">
+                                <div class="title">
+                                    <i class="question circle outline icon"></i>
+                                    Help me!
+                                </div>
+                                <div class="content">
+                                    <p class="transition hidden">
+                                        <a href="#" id="helpWord">What's the word in Finnish?</a><br />
+                                        <a href="#" id="helpCase">What case should I use here?</a><br />
+                                        <a href="#" id="helpStemType">How do I know how to find the stems?</a><br />
+                                        <a href="#" id="helpStems">How do I form the stems for this word?</a><br />
+                                        <a href="#" id="helpChooseStem">Which stem should I use here?</a><br />
+                                        <a href="#" id="helpEnding">What are the endings for this case?</a><br />
+                                        <a href="#" id="helpEndingVariant">Which version of the ending should I use?</a><br />
+                                        <a href="#" id="helpGradationType">Does this word have consonant gradation?</a><br />
+                                        <a href="#" id="helpGradation">How do I use consonant gradation here?</a><br />
+                                        <a href="#" id="helpLost">Just help me, I'm lost!</a>
+                                    </p>
+                                </div>
+
+                            </div>
 
 
 
+
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
+
+
+            <!-- HELPER GRID -->
+
             <div class="right floated five wide column" id='helperText'>
+
+
+                <!-- STEM TABLE -->
 
 
                 <table class="ui compact striped table" id="tableStems" style="display: none">
@@ -192,6 +320,9 @@
                     </tbody>
                 </table>
 
+                <!-- ENDINGS TABLE -->
+
+
                 <table class="ui compact striped table" id="tableCaseEndings" style="display: none">
                     <thead>
                         <tr>
@@ -253,6 +384,8 @@
                 </table>
 
 
+                <!-- VOWEL HARMONY TABLE -->
+
                 <table class="ui compact table" id="tableVocal1" style="display: none">
                     <thead>
                         <tr>
@@ -293,6 +426,7 @@
                     </tbody>
                 </table>
 
+                <!-- CONSONANT GRADATION TABLE -->
 
 
                 <table class="ui compact table" id="tableCons" style="display: none">
@@ -393,7 +527,6 @@
             <div class="left floated one wide column"></div>
             <div class="left floated nine wide column">
                 <button class='ui button' id='backButton' style="display: none">Back</button>
-                <!--                <button class='ui button' id='nextButton'>Next</button>-->
             </div>
             <div class="right floated five wide column"></div>
             <div class="right floated one wide column"></div>
@@ -401,6 +534,23 @@
     </div>
 
 
+    <!-- MODAL -->
+
+    <div class="ui basic modal">
+        <div class="ui icon header">
+            <i class="thumbs up icon"></i>
+            Congratulations
+        </div>
+        <div class="content center aligned">
+            <p>You have found the right word, yay!</p>
+        </div>
+        <div class="actions">
+            <div class="ui green ok inverted button">
+                <i class="checkmark icon"></i>
+                Cool!
+            </div>
+        </div>
+    </div>
 
 
 </body>
