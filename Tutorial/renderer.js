@@ -81,7 +81,7 @@ const stepExplanation2 = document.getElementById('stepExplanation2');
 const stepReveal2 = document.getElementById('stepReveal2');
 const stepConfirmButton2 = document.getElementById('stepConfirmButton2');
 
-const toHide1 = document.getElementById('toHide1');
+const test = document.getElementById('test');
 
 
 ///Initialisation
@@ -290,9 +290,11 @@ function trainer1() {
 
 
 
+
+
 stepHelpButton1.onclick = function () {
 
-    toHide1.style.display = "none";
+    stepHelpButton1.style.display = "none !important";
     stepExplanation1.innerHTML = "The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
     stepAnswer1.style.display = "";
 
