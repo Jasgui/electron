@@ -130,18 +130,21 @@
                             <div class="ui styled accordion">
                                 <div class="active title">
                                     <i class="dropdown icon"></i>
-                                    Step 0 - Finding the right Finnish word
+                                    <span id='stepTitle'>Step 0 - Finding the right Finnish word</span>
+                                    <h5 class="ui right floated header" id='stepAnswer'>kauppa</h5>
                                 </div>
                                 <div class="active content">
-                                    <span>Here comes the prompt... with the input</span>
+                                    <span id='stepPrompt'>Here comes the prompt... with the input</span>
                                     <div class="ui input">
                                         <input type="text" placeholder="Search..." data-dashlane-rid="a6fc0004e7099a6b" data-form-type="query">
                                     </div>
                                     <br /><br />
-                                    <button class="ui teal basic button">a help button</button>
+                                    <button class="ui teal basic button" id='stepHelpButton'>a help button</button>
                                     <br /><br />
-                                    <p>And the explanation</p>
-
+                                    <p id='stepExplanation'>And the explanation</p>
+                                    <div><button class="ui right floated icon button" id='stepReveal'><i class="eye slash icon"></i></button>
+                                        <br />
+                                    </div>
 
                                 </div>
                                 <div class="title">

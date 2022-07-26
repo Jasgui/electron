@@ -64,6 +64,15 @@ const helpLost = document.getElementById('helpLost');
 const inputField = document.getElementById('inputField');
 const trainerButton = document.getElementById('trainerButton');
 
+const stepTitle = document.getElementById('stepTitle');
+const stepPrompt = document.getElementById('stepPrompt');
+const stepHelpButton = document.getElementById('stepHelpButton');
+const stepExplanation = document.getElementById('stepExplanation');
+const stepAnswer = document.getElementById('stepAnswer');
+const stepReveal = document.getElementById('stepReveal');
+
+
+
 ///Initialisation
 
 
@@ -203,6 +212,7 @@ function step5() {
 function trainer1() {
     gridTutorial.style.display = "none";
     gridTrainer.style.display = "";
+    stepAnswer.style.display = "none";
 
     trainerText.innerHTML = "How would you say <b>" + dataPhrase + "</b> in Finnish?";
 
