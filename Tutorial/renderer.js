@@ -63,8 +63,6 @@ const helpLost = document.getElementById('helpLost');
 
 const inputField = document.getElementById('inputField');
 const trainerButton = document.getElementById('trainerButton');
-const helpButton = document.getElementById('helpButton');
-const explanations = document.getElementById('explanations');
 
 ///Initialisation
 
@@ -241,73 +239,11 @@ inputField.addEventListener("keypress", function (event) {
 });
 
 
-helpButton.onclick = function () {
-
-    if (helpButton.name == "firstStep") {
-
-        explanations.innerHTML = "TIP:<br/>The first step is to know what word you're going to use. Do you know how to say <b>" + dataWordEnglish + "</b> in Finnish? If you do, type it here:<br/><br/> <div class='ui transparent input'><input type='text' placeholder='' id='explanationInput'></div><br/>";
-        const explanationInput = document.getElementById('explanationInput');
-        explanationInput.focus();
-        helpButton.innerHTML = "<i class='question circle outline icon'></i>I don't know the word in Finnish!";
-        helpButton.name = "finnishWord";
-
-
-        explanationInput.addEventListener("keypress", function (event) {
-
-            if (event.key === "Enter") {
-                event.preventDefault();
-                isWordEnglish(explanationInput.value);
-            }
-
-        });
 
 
 
 
-    } else if (helpButton.name == "finnishWord") {
 
-        var htmlText = "No worries, here's the word for you: <b>" + dataWordFinnish + "</b>. It means <b><i>" + dataWordEnglish + "</i></b> in English. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
-        updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
-
-
-    } else if (helpButton.name == "stemType") {
-
-        var htmlText = "";
-        updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
-
-
-    };
-
-
-
-
-};
-
-
-
-function isWordEnglish(inputWord) {
-
-    if (inputWord == dataWordFinnish) {
-
-        var htmlText = "Great! You know the word. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
-
-    } else {
-        var htmlText = "Oops... this is not the word I was thinking of.<br/>Let's use <b>" + dataWordFinnish + "</b>, ok? It means <b><i>" + dataWordEnglish + "</i></b> in English. I added it to the recap table below.<br/>Now you can either try to type your answer again or ask for more help below.";
-    };
-
-    updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
-
-};
-
-
-function updateHelp(text, tableCell, content, buttonText, buttonName) {
-
-    explanations.innerHTML = text;
-    window[tableCell].innerHTML = content;
-    helpButton.innerHTML = "<i class='question circle outline icon'></i>" + buttonText;
-    helpButton.name = buttonName;
-
-};
 
 
 menuStep1.onclick = function () {
