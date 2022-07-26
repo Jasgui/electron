@@ -272,6 +272,8 @@ helpButton.onclick = function () {
 
     } else if (helpButton.name == "stemType") {
 
+        var htmlText = "";
+        updateHelp(htmlText, "recapWord", dataWordFinnish, "How do I find the stems of this word?", "stemType");
 
 
     };
