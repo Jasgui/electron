@@ -1,3 +1,5 @@
+const newbranch = "";
+
 const dataPhrase = "in the shop";
 const dataResult = "kaupassa";
 const dataResultNoGradation = "kauppassa";
