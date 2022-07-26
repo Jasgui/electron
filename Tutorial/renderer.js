@@ -84,7 +84,11 @@ fetch("data.json")
     .then(jsondata => console.log(jsondata));
 */
 
-$('.dropdown')
+
+$('.ui.dropdown')
+    .dropdown();
+
+$('#helpMenu')
     .dropdown({
         action: 'hide'
     });
@@ -212,7 +216,6 @@ function step5() {
 function trainer1() {
     gridTutorial.style.display = "none";
     gridTrainer.style.display = "";
-    stepAnswer.style.display = "none";
 
     trainerText.innerHTML = "How would you say <b>" + dataPhrase + "</b> in Finnish?";
 
