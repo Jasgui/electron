@@ -4,16 +4,16 @@ const dataResultNoGradation = "kauppassa";
 const dataWordEnglish = "a shop";
 const dataWordFinnish = "kauppa";
 const dataWordFinnishHighlighted = "kaupp<b>a</b>";
-const dataCase = "partitive";
+const dataCase = "illative";
 const dataCaseTranslation = "in ... / inside ...";
 const dataStem1 = "kauppa-";
 const dataStem2 = "kauppax-";
 const dataTypeReason = "ends in a vowel that is not <b>e</b> or <b>i</b>";
 const dataType = "5";
 const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basically the same as the nominative as well";
-const dataEndings = "-a/ä";
-const dataPartitiveReason = "the nominative ends in <b>-e</b>";
-const dataPartitiveHighlighted = "perh<b>e</b>";
+const dataEndings = "-seen";
+const dataReason = "the stem is one syllable";
+const dataStemHighlighted = "<b>|maa|</b>";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -126,6 +126,9 @@ const stepConfirmButton5 = document.getElementById('stepConfirmButton5');
 const stepHide5a = document.getElementById('stepHide5a');
 
 const tablePartitive = document.getElementById('tablePartitive');
+const tableIllative = document.getElementById('tableIllative');
+
+
 ///Initialisation
 
 
@@ -622,7 +625,7 @@ function partitiveHelp() {
 
         stepHide5.style.display = 'none';
         stepHide5a.style.display = 'none';
-        stepExplanation5.innerHTML = "The endings for the <i>partitive</i> for " + dataPartitiveHighlighted + " is <b>" + dataEndings + "</b> because " + dataPartitiveReason + ".";
+        stepExplanation5.innerHTML = "The endings for the <i>partitive</i> for " + dataStemHighlighted + " is <b>" + dataEndings + "</b> because " + dataReason + ".";
         stepAnswer5.style.display = "";
 
     } else {
@@ -637,6 +640,33 @@ function partitiveHelp() {
 
 function illativeHelp() {
 
+    if (stepHelpButton5.name == "status 2") {
+
+        document.getElementById("ending-" + dataCase).className = "warning";
+        stepExplanation5.innerHTML = "The row with the right ending for the <i>" + dataCase + "</i> is highlighted is the table. If you need more help, use the help button again.";
+        stepHelpButton5.name = "status 3";
+
+    } else if (stepHelpButton5.name == "status 3") {
+
+        tableIllative.style.display = "";
+        stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>illative</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
+        stepHelpButton5.innerHTML = "No, more help needed!";
+        stepHelpButton5.name = "status 4";
+
+    } else if (stepHelpButton5.name == "status 4") {
+
+        stepHide5.style.display = 'none';
+        stepHide5a.style.display = 'none';
+        stepExplanation5.innerHTML = "The endings for the <i>illative</i> for " + dataStemHighlighted + " is <b>" + dataEndings + "</b> because " + dataReason + ".";
+        stepAnswer5.style.display = "";
+
+    } else {
+
+        tableCaseEndings.style.display = "";
+        stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
+        stepHelpButton5.name = "status 2";
+
+    };
 
 
 };
