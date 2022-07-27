@@ -21,9 +21,15 @@
     <!-- TOP MENU -->
 
     <div class="ui menu">
-        <a class="active item" id='menuTutorial'>
+
+        <a class="active item" id='menuHome'>
+            Home
+        </a>
+        <!--
+        <a class="item" id='menuTutorial'>
             Tutorial
         </a>
+    -->
         <a class="item" id='menuTrainer'>
             Trainer
         </a>
@@ -74,12 +80,10 @@
                 <div class="ui grid" id='gridTutorial'>
                     <div class="row">
                         <div class="left floated sixteen wide column" id='mainText'>
-                            <h1>Welcome to Work My Cases!</h1>
-                            Hello!
-                            Are you familiar with the 5-step routine for cases? <br />
-                            <button class='ui button' id='yesButton'>Yes</button>
-                            <button class='ui button' id='noButton'>No</button>
-                            <button class='ui button' id='remindButton'>Remind me?</button>
+                            <div class="ui huge header">Welcome!!!</div>
+                            <button class='ui button' id='yesButton' style='display:none'>Yes</button>
+                            <button class='ui button' id='noButton' style='display:none'>No</button>
+                            <button class='ui button' id='remindButton' style='display:none'>Remind me?</button>
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +103,7 @@
 
                     <div class="row">
                         <div class="left floated sixteen wide column" id='trainerText'>
-                            <h1>Text for the trainer!</h1>
+                            <h1></h1>
                         </div>
                     </div>
 
@@ -108,8 +112,8 @@
                     <div class="row">
                         <div class="left floated sixteen wide column">
                             <div class="ui action huge input">
-                                <input type='text' placeholder="type here..." id="inputField">
-                                <button class='ui teal button' id="trainerButton">go!</button>
+                                <input type='text' placeholder="type here..." id="inputField" style='display:none'>
+                                <button class='ui teal button' id="trainerButton" style='display:none'>go!</button>
                             </div>
                         </div>
                     </div>
@@ -127,7 +131,7 @@
                     <div class="row">
                         <div class="left floated sixteen wide column">
 
-                            <div class="ui styled accordion">
+                            <div class="ui styled accordion" id='accordion' style='display:none'>
 
                                 <!-- WORD -->
 

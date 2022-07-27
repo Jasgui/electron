@@ -33,6 +33,7 @@ const helperText = document.getElementById('helperText');
 
 const menuTutorial = document.getElementById('menuTutorial');
 const menuTrainer = document.getElementById('menuTrainer');
+const menuHome = document.getElementById('menuHome');
 const menuStems = document.getElementById('menuStems');
 const menuEndings = document.getElementById('menuEndings');
 const menuVocal = document.getElementById('menuVocal');
@@ -160,6 +161,7 @@ const stepHide7 = document.getElementById('stepHide7');
 const stepConfirmButton7 = document.getElementById('stepConfirmButton7');
 const stepHide7a = document.getElementById('stepHide7a');
 
+const accordion = document.getElementById('accordion');
 ///Initialisation
 
 
@@ -213,6 +215,12 @@ function launchTutorial() {
 
     breadcrumbs.style.display = 'inline';
     intro();
+
+};
+
+function home() {
+    activateMenu("home");
+    mainText.innerHTML = "<div class='ui huge header'>WELCOME!!!</div>";
 
 };
 
@@ -299,6 +307,11 @@ function step5() {
 };
 
 function trainer1() {
+
+    inputField.style.display = "";
+    trainerButton.style.display = "";
+    accordion.style.display = "";
+
     gridTutorial.style.display = "none";
     gridTrainer.style.display = "";
 
@@ -983,19 +996,28 @@ function nextButtonParameters(text, destination, display) {
 };
 
 
+/*
 menuTutorial.onclick = function () {
 
     gridTrainer.style.display = "none";
     gridTutorial.style.display = "";
     intro();
 
-};
+};*/
 
 menuTrainer.onclick = function () {
 
     gridTrainer.style.display = "";
     gridTutorial.style.display = "none";
     trainer1();
+
+};
+
+menuHome.onclick = function () {
+
+    gridTutorial.style.display = "";
+    gridTrainer.style.display = 'none';
+    home();
 
 };
 
