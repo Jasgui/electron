@@ -15,7 +15,17 @@ const dataEndings = "-seen";
 const dataReason = "the stem is one syllable";
 const dataStemHighlighted = "<b>|maa|</b>";
 const dataEndingsFinal = "-sta";
-const dataGradation = "tt / t";
+const dataGradation = "tt → t";
+const dataStemCut = "|kaup|pa-";
+const dataBeforeGradationCut = "*|kaup|pas|ta";
+const dataStemCutUnderlined = "|kaup|<u>pa</u>-";
+const dataBeforeGradationCutUnderlined = "*|kaup|<u>pas</u>|ta";
+const dataStemSyllable = "|pa|";
+const dataStemSyllableStatus = "open";
+const dataBeforeGradationSyllable = "|pas|";
+const dataBeforeGradationSyllableStatus = "closed";
+const dataConsonantBefore = "tt";
+const dataConsonantAfter = "t";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -331,24 +341,7 @@ function trainer1() {
     stepAnswer2.innerHTML = dataCase;
     stepPrompt2.innerHTML = "So we are trying to say <i><b>" + dataPhrase + "</b></i> in Finnish.<br/><br/> What case should you use to translate <i>" + dataCaseTranslation + "</i>?<br/><br/>If you need help, use the button.";
 
-    stepConfirmButton2.onclick = function () {
 
-        console.log(stepInput2.value);
-
-        if (stepInput2.value == dataCase) {
-
-            stepHide2.style.display = 'none';
-            stepHide2a.style.display = 'none';
-            stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
-            stepAnswer2.style.display = "";
-
-        } else {
-
-            stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button.<br/><br/>";
-            stepInput1.value = "";
-        };
-
-    };
 
 
     /// STEMS
@@ -513,22 +506,7 @@ function trainer1() {
     stepAnswer5.innerHTML = rightEnding;
     stepPrompt5.innerHTML = "Let's now choose the right endings for that word in that case. As always, help is only one click away.";
 
-    stepConfirmButton5.onclick = function () {
 
-        if (stepInput5.value == rightEnding) {
-
-            stepHide5a.style.display = 'none';
-            stepHide5.style.display = 'none';
-            stepExplanation5.innerHTML = "Yes! The ending for the <i>" + dataCase + "</i> of the word <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>.";
-            stepAnswer5.style.display = "";
-
-        } else {
-
-            stepPrompt5.innerHTML = "That's not the right case. If you need help, use the help button.";
-
-        };
-
-    };
 
 
     /// VOCAL HARMONY
@@ -583,33 +561,86 @@ function trainer1() {
     stepAnswer7.innerHTML = dataGradation;
     stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>What consonant gradation (if any) applies here?<br/><br/>";
 
-    stepConfirmButton7.onclick = function () {
 
-        if (stepInput7.value == dataGradation) {
-
-            stepHide7a.style.display = 'none';
-            stepHide7.style.display = 'none';
-
-            var explanationText = "";
-            if (dataGradation == "none") {
-                explanationText = "You're absolutely right! This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
-            } else {
-                explanationText = "You're absolutely right! This word will undergo the <b>" + dataGradation + "</b> gradation.";
-            };
-
-            stepExplanation7.innerHTML = explanationText;
-            stepAnswer7.style.display = "";
-
-        } else {
-
-            stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>That's not correct... try again or use the help button<br/><br/>";
-        };
-
-    }
 
 };
 
+stepConfirmButton6.onclick = function () {
+    stepConfirm6clicked();
+};
 
+
+stepConfirmButton5.onclick = function () {
+
+    if (stepInput5.value == rightEnding) {
+
+        stepHide5a.style.display = 'none';
+        stepHide5.style.display = 'none';
+        stepExplanation5.innerHTML = "Yes! The ending for the <i>" + dataCase + "</i> of the word <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>.";
+        stepAnswer5.style.display = "";
+
+    } else {
+
+        stepPrompt5.innerHTML = "That's not the right case. If you need help, use the help button.";
+
+    };
+
+};
+
+stepConfirmButton4.onclick = function () {
+    stepInput4clicked();
+};
+
+stepConfirmButton3.onclick = function () {
+
+    confirmButton3clicked();
+};
+
+stepConfirmButton2.onclick = function () {
+
+    console.log(stepInput2.value);
+
+    if (stepInput2.value == dataCase) {
+
+        stepHide2.style.display = 'none';
+        stepHide2a.style.display = 'none';
+        stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
+        stepAnswer2.style.display = "";
+
+    } else {
+
+        stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button.<br/><br/>";
+        stepInput1.value = "";
+    };
+
+};
+
+stepConfirmButton7.onclick = function () {
+
+    console.log(stepInput7.value);
+    console.log(dataGradation);
+
+    if (stepInput7.value == dataGradation) {
+
+        stepHide7a.style.display = 'none';
+        stepHide7.style.display = 'none';
+
+        var explanationText = "";
+        if (dataGradation == "none") {
+            explanationText = "You're absolutely right! This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
+        } else {
+            explanationText = "You're absolutely right! This word will undergo the <b>" + dataGradation + "</b> gradation.";
+        };
+
+        stepExplanation7.innerHTML = explanationText;
+        stepAnswer7.style.display = "";
+
+    } else {
+
+        stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>That's not correct... try again or use the help button<br/><br/>";
+    };
+
+};
 
 
 
@@ -826,8 +857,24 @@ stepReveal6.onclick = function () {
 
 stepHelpButton7.onclick = function () {
 
-    tableCons.style.display = "";
-    stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
+    if (stepHelpButton7.name == "status 2") {
+
+        stepExplanation7.innerHTML = "First, check the status of the last syllable of the stem. Does it goes open > closed, closed > open or remains the same?<br/><br/>If it changes, the consonant(s) right before that syllable change from one column to the other in the same order."
+        stepHelpButton7.innerHTML = "I'm still not sure";
+        stepHelpButton7.name = "status 3";
+
+    } else if (stepHelpButton7.name == "status 3") {
+
+        stepExplanation7.innerHTML = "Ok, so the stem is <i>" + stepAnswer4.innerHTML + "</i> and the stem+ending is <i>" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</i>.<br/><br/>We cut them in syllables:<br/><br/>" + dataStemCut + " and " + dataBeforeGradationCut + "<br/><br/>Then we look at the last syllable from the stem:<br/><br/> " + dataStemCutUnderlined + " and " + dataBeforeGradationCutUnderlined + "<br/><br/>The first one is <b>" + dataStemSyllable + "</b> and is <i>" + dataStemSyllableStatus + "</i> and the second one is <b>" + dataBeforeGradationSyllable + "</b> and is <i>" + dataBeforeGradationSyllableStatus + "</i>.<br/><br/>So from Stem > Word the syllable goes <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>The consonant(s) right before that syllable is <b>" + dataConsonantBefore + "</b> and it needs to also change from <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>In the table you can see that a <b>" + dataConsonantBefore + "</b> in an <i>" + dataStemSyllableStatus + " syllable</i> corresponds to a <b>" + dataConsonantAfter + "</b> in a <i>" + dataBeforeGradationSyllableStatus + " syllable</i><br/><br/>So in this case you need to apply <b>" + dataGradation + "</b>";
+
+    } else {
+
+        tableCons.style.display = "";
+        stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
+        stepHelpButton7.name = "status 2";
+        stepHelpButton7.innerHTML = "I need more help!";
+
+    };
 
 
 };
