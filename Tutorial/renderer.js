@@ -543,6 +543,7 @@ function trainer1() {
     function stepConfirm6clicked() {
 
         var stepinput_clean = "";
+        var dataEndingsFinal_clean = dataEndingsFinal.slice(1);
 
         if (stepInput6.value.slice(0, 1) == "-") {
             stepinput_clean = stepInput6.value.slice(1);
@@ -550,6 +551,18 @@ function trainer1() {
             stepinput_clean = stepInput6.value;
         };
 
+        if (stepinput_clean == dataEndingsFinal_clean) {
+
+            stepHide6a.style.display = 'none';
+            stepHide6.style.display = 'none';
+            stepExplanation6.innerHTML = "Exact! The ending after applying the <i>vowel harmony</i> is <b>" + dataEndingsFinal + "</b>.";
+            stepAnswer6.style.display = "";
+
+        } else {
+
+            stepPrompt6.innerHTML = "That's not it... Try again or use the help.";
+
+        };
 
 
     };
@@ -753,6 +766,24 @@ stepReveal5.onclick = function () {
 
 };
 
+stepHelpButton6.onclick = function () {
+
+    tableVocal1.style.display = "";
+    tableVocal2.style.display = "";
+    stepExplanation6.innerHTML = "Look at the <i>vowel harmony</i> table and remember to use the right vowel for the ending."
+
+};
+
+stepReveal6.onclick = function () {
+
+    stepHide6.style.display = 'none';
+    stepHide6a.style.display = 'none';
+    stepExplanation6.innerHTML = "The right version of the ending in this case is <b>" + dataEndingsFinal + "</b>";
+    stepAnswer6.style.display = "";
+
+
+
+};
 
 
 
