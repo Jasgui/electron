@@ -270,6 +270,61 @@
                                 <!-- STEP 3 - ENDING -->
 
 
+
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    <span>Step 3 - Finding the right ending</span>
+                                    <h5 class="ui right floated header" id='stepAnswer5' style="display: none">-lla/llä</h5>
+                                </div>
+                                <div class="content">
+                                    <div>
+                                        <section id='stepHide5'><span id='stepPrompt5'></span>
+
+                                            <select class="ui dropdown" id="stepInput5">
+                                                <option value="">Choose an ending</option>
+                                                <option value="-">-</option>
+                                                <option value="-n">-n</option>
+                                                <option value="-a/ä">-a/ä</option>
+                                                <option value="-ta/tä">-ta/tä</option>
+                                                <option value="-tta/ttä">-tta/ttä</option>
+                                                <option value="-ssa/ssä">-ssa/ssä</option>
+                                                <option value="-sta/stä">-sta/stä</option>
+                                                <option value="-Vn">-Vn</option>
+                                                <option value="-hVn">-hVn</option>
+                                                <option value="-seen">-seen</option>
+                                                <option value="-lla/llä">-lla/llä</option>
+                                                <option value="-lta/ltä">-lta/ltä</option>
+                                                <option value="-lle">-lle</option>
+                                                <option value="-na/nä">-na/nä</option>
+                                                <option value="-ksi">-ksi</option>
+                                            </select>
+                                            <button class="ui teal icon button" id='stepConfirmButton5'><i class="check icon"></i></button>
+
+
+                                            <br /><br />
+
+
+                                        </section>
+                                    </div>
+                                    <p id='stepExplanation5'></p>
+                                    <div>
+                                        <section id='stepHide5a'>
+                                            <button class="ui teal basic button" id='stepHelpButton5'>Help me with the cases</button>
+                                            <br /><br />
+                                            <div><button class="ui right floated icon button" id='stepReveal5'><i class="eye slash icon"></i></button>
+                                                <br />
+                                            </div>
+                                        </section>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
                                 <div class="title">
                                     <i class="dropdown icon"></i>
                                     <span id='stepTitle'>Step 3 - Finding the right ending</span>
@@ -490,54 +545,100 @@
                     </thead>
                     <tbody>
 
-                        <tr>
+                        <tr id='ending-nominative'>
                             <td data-label="Case">nominative</td>
                             <td data-label="Ending">-</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-accusative'>
                             <td data-label="Case">accusative</td>
                             <td data-label="Ending">-n</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-genitive'>
                             <td data-label="Case">genitive</td>
                             <td data-label="Ending">-n</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-partitive'>
                             <td data-label="Case">partitive</td>
                             <td data-label="Ending">-a/ä | -ta/tä | -tta/ttä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-inessive'>
                             <td data-label="Case">inessive</td>
                             <td data-label="Ending">-ssa/ssä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-elative'>
                             <td data-label="Case">elative</td>
                             <td data-label="Ending">-sta/stä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-illative'>
                             <td data-label="Case">illative</td>
                             <td data-label="Ending">-vowel+n | -h+vowel+n | -seen</td>
                         </tr>
-                        <tr id="rowAdessive">
+                        <tr id='ending-adessive'>
                             <td data-label="Case">adessive</td>
                             <td data-label="Ending">-lla/llä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-ablative'>
                             <td data-label="Case">ablative</td>
                             <td data-label="Ending">-lta/ltä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-allative'>
                             <td data-label="Case">allative</td>
                             <td data-label="Ending">-lle</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-essive'>
                             <td data-label="Case">essive</td>
                             <td data-label="Ending">-na/nä</td>
                         </tr>
-                        <tr>
+                        <tr id='ending-translative'>
                             <td data-label="Case">translative</td>
                             <td data-label="Ending">-ksi</td>
                         </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- PARTITIVE ENDINGS -->
+
+
+                <table class="ui compact striped table" id="tablePartitive" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>Condition</th>
+                            <th>Ending</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr id=''>
+                            <td data-label="Condition">stem in -CV</td>
+                            <td data-label="Ending">-a/ä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">stem in -ea/eä</td>
+                            <td data-label="Ending">-a/ä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">stem in -ia/iä</td>
+                            <td data-label="Ending">-a/ä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">stem in -ua/yä</td>
+                            <td data-label="Ending">-a/ä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">stem in -VV</td>
+                            <td data-label="Ending">-ta/tä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">stem in -C</td>
+                            <td data-label="Ending">-ta/tä</td>
+                        </tr>
+                        <tr id=''>
+                            <td data-label="Condition">nominative in -e</td>
+                            <td data-label="Ending">-tta/ttä</td>
+                        </tr>
+
+
                     </tbody>
                 </table>
 

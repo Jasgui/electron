@@ -4,13 +4,16 @@ const dataResultNoGradation = "kauppassa";
 const dataWordEnglish = "a shop";
 const dataWordFinnish = "kauppa";
 const dataWordFinnishHighlighted = "kaupp<b>a</b>";
-const dataCase = "inessive";
+const dataCase = "partitive";
 const dataCaseTranslation = "in ... / inside ...";
 const dataStem1 = "kauppa-";
 const dataStem2 = "kauppax-";
 const dataTypeReason = "ends in a vowel that is not <b>e</b> or <b>i</b>";
 const dataType = "5";
 const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basically the same as the nominative as well";
+const dataEndings = "-a/ä";
+const dataPartitiveReason = "the nominative ends in <b>-e</b>";
+const dataPartitiveHighlighted = "perh<b>e</b>";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -112,8 +115,17 @@ const stepHide4 = document.getElementById('stepHide4');
 const stepConfirmButton4 = document.getElementById('stepConfirmButton4');
 const stepHide4a = document.getElementById('stepHide4a');
 
+const stepAnswer5 = document.getElementById('stepAnswer5');
+const stepPrompt5 = document.getElementById('stepPrompt5');
+const stepInput5 = document.getElementById('stepInput5');
+const stepHelpButton5 = document.getElementById('stepHelpButton5');
+const stepExplanation5 = document.getElementById('stepExplanation5');
+const stepReveal5 = document.getElementById('stepReveal5');
+const stepHide5 = document.getElementById('stepHide5');
+const stepConfirmButton5 = document.getElementById('stepConfirmButton5');
+const stepHide5a = document.getElementById('stepHide5a');
 
-
+const tablePartitive = document.getElementById('tablePartitive');
 ///Initialisation
 
 
@@ -458,6 +470,45 @@ function trainer1() {
 
     };
 
+    /// ENDINGS
+    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
+    var rightEnding = "";
+
+    if (dataCase == "partitive" || dataCase == "illative") {
+
+        rightEnding = dataEndings;
+
+    } else {
+
+        for (let i = 0; i < caseEndings.length; i++) {
+            if (caseEndings[i][0] == dataCase) {
+                rightEnding = caseEndings[i][1];
+            }
+        }
+
+    };
+
+    stepAnswer5.innerHTML = rightEnding;
+    stepPrompt5.innerHTML = "Let's now choose the right endings for that word in that case. As always, help is only one click away.";
+
+    stepConfirmButton5.onclick = function () {
+
+        if (stepInput5.value == rightEnding) {
+
+            stepHide5a.style.display = 'none';
+            stepHide5.style.display = 'none';
+            stepExplanation5.innerHTML = "Yes! The ending for the <i>" + dataCase + "</i> of the word <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>.";
+            stepAnswer5.style.display = "";
+
+        } else {
+
+            stepPrompt5.innerHTML = "That's not the right case. If you need help, use the help button.";
+
+        };
+
+    };
+
+
 };
 
 
@@ -537,6 +588,108 @@ stepReveal4.onclick = function () {
     stepHide4a.style.display = 'none';
     stepExplanation4.innerHTML = "The stem for the <i>" + dataCase + "</i> is <b>" + rightStem + "</b>.";
     stepAnswer4.style.display = "";
+
+};
+
+
+stepHelpButton5.onclick = function () {
+
+    if (dataCase == "partitive") {
+        partitiveHelp();
+    } else if (dataCase == "illative") {
+        illativeHelp();
+    } else {
+        otherCasesHelp();
+    };
+};
+
+function partitiveHelp() {
+
+    if (stepHelpButton5.name == "status 2") {
+
+        document.getElementById("ending-" + dataCase).className = "warning";
+        stepExplanation5.innerHTML = "The row with the right ending for the <i>" + dataCase + "</i> is highlighted is the table. If you need more help, use the help button again.";
+        stepHelpButton5.name = "status 3";
+
+    } else if (stepHelpButton5.name == "status 3") {
+
+        tablePartitive.style.display = "";
+        stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>partitive</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
+        stepHelpButton5.innerHTML = "No, more help needed!";
+        stepHelpButton5.name = "status 4";
+
+    } else if (stepHelpButton5.name == "status 4") {
+
+        stepHide5.style.display = 'none';
+        stepHide5a.style.display = 'none';
+        stepExplanation5.innerHTML = "The endings for the <i>partitive</i> for " + dataPartitiveHighlighted + " is <b>" + dataEndings + "</b> because " + dataPartitiveReason + ".";
+        stepAnswer5.style.display = "";
+
+    } else {
+
+        tableCaseEndings.style.display = "";
+        stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
+        stepHelpButton5.name = "status 2";
+
+    };
+
+};
+
+function illativeHelp() {
+
+
+
+};
+
+function otherCasesHelp() {
+
+    if (stepHelpButton5.name == "status 2") {
+
+        document.getElementById("ending-" + dataCase).className = "warning";
+        stepExplanation5.innerHTML = "The row with the right ending for the <i>" + dataCase + "</i> is highlighted is the table. If that's not enough, use the reveal <i class='eye slash icon'></i> button.";
+
+    } else {
+
+        tableCaseEndings.style.display = "";
+        stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
+        stepHelpButton5.name = "status 2";
+
+    };
+
+};
+
+
+
+
+
+
+
+
+
+stepReveal5.onclick = function () {
+
+    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
+    var rightEnding = "";
+
+    if (dataCase == "partitive" || dataCase == "illative") {
+
+        rightEnding = dataEndings;
+    } else {
+
+        for (let i = 0; i < caseEndings.length; i++) {
+            if (caseEndings[i][0] == dataCase) {
+                rightEnding = caseEndings[i][1];
+            }
+        }
+
+    };
+
+
+
+    stepHide5.style.display = 'none';
+    stepHide5a.style.display = 'none';
+    stepExplanation5.innerHTML = "The ending for the <i>" + dataCase + "</i> of <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>";
+    stepAnswer5.style.display = "";
 
 };
 
