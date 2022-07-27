@@ -14,6 +14,7 @@ const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basical
 const dataEndings = "-seen";
 const dataReason = "the stem is one syllable";
 const dataStemHighlighted = "<b>|maa|</b>";
+const dataEndingsFinal = "-sta";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -128,6 +129,15 @@ const stepHide5a = document.getElementById('stepHide5a');
 const tablePartitive = document.getElementById('tablePartitive');
 const tableIllative = document.getElementById('tableIllative');
 
+const stepAnswer6 = document.getElementById('stepAnswer6');
+const stepPrompt6 = document.getElementById('stepPrompt6');
+const stepInput6 = document.getElementById('stepInput6');
+const stepHelpButton6 = document.getElementById('stepHelpButton6');
+const stepExplanation6 = document.getElementById('stepExplanation6');
+const stepReveal6 = document.getElementById('stepReveal6');
+const stepHide6 = document.getElementById('stepHide6');
+const stepConfirmButton6 = document.getElementById('stepConfirmButton6');
+const stepHide6a = document.getElementById('stepHide6a');
 
 ///Initialisation
 
@@ -213,7 +223,6 @@ function step1() {
     nextButtonParameters("Step 2", "step2", "inline");
 };
 
-
 function step2() {
     activateMenu("step2");
     tableStems.style.display = "none";
@@ -267,7 +276,6 @@ function step5() {
     nextButtonParameters("Trainer", "step5", "inline");
 
 };
-
 
 function trainer1() {
     gridTutorial.style.display = "none";
@@ -512,6 +520,41 @@ function trainer1() {
     };
 
 
+    /// VOCAL HARMONY
+
+    stepAnswer6.innerHTML = dataEndingsFinal;
+
+    stepPrompt6.innerHTML = "By now you should know what set of ending you're going to use, but this set may contain 2 different versions or a vowel that needs to be define. Try to type the actual ending:<br/><br/>";
+
+
+    stepInput6.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+
+            stepConfirm6clicked();
+
+        };
+
+    });
+    stepConfirmButton6.onclick = function () {
+        stepConfirm6clicked();
+    };
+
+    function stepConfirm6clicked() {
+
+        var stepinput_clean = "";
+
+        if (stepInput6.value.slice(0, 1) == "-") {
+            stepinput_clean = stepInput6.value.slice(1);
+        } else {
+            stepinput_clean = stepInput6.value;
+        };
+
+
+
+    };
+
+
 };
 
 
@@ -524,8 +567,6 @@ stepHelpButton1.onclick = function () {
     stepAnswer1.style.display = "";
 
 };
-
-
 
 stepHelpButton2.onclick = function () {
 
@@ -541,8 +582,6 @@ stepReveal2.onclick = function () {
     stepAnswer2.style.display = "";
 
 };
-
-
 
 stepHelpButton3.onclick = function () {
 
@@ -593,7 +632,6 @@ stepReveal4.onclick = function () {
     stepAnswer4.style.display = "";
 
 };
-
 
 stepHelpButton5.onclick = function () {
 
@@ -688,14 +726,6 @@ function otherCasesHelp() {
 
 };
 
-
-
-
-
-
-
-
-
 stepReveal5.onclick = function () {
 
     const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
@@ -722,6 +752,11 @@ stepReveal5.onclick = function () {
     stepAnswer5.style.display = "";
 
 };
+
+
+
+
+
 
 
 trainerButton.onclick = function () {
@@ -751,13 +786,6 @@ inputField.addEventListener("keypress", function (event) {
     }
 
 });
-
-
-
-
-
-
-
 
 
 menuStep1.onclick = function () {
