@@ -15,6 +15,7 @@ const dataEndings = "-seen";
 const dataReason = "the stem is one syllable";
 const dataStemHighlighted = "<b>|maa|</b>";
 const dataEndingsFinal = "-sta";
+const dataGradation = "tt / t";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -138,6 +139,16 @@ const stepReveal6 = document.getElementById('stepReveal6');
 const stepHide6 = document.getElementById('stepHide6');
 const stepConfirmButton6 = document.getElementById('stepConfirmButton6');
 const stepHide6a = document.getElementById('stepHide6a');
+
+const stepAnswer7 = document.getElementById('stepAnswer7');
+const stepPrompt7 = document.getElementById('stepPrompt7');
+const stepInput7 = document.getElementById('stepInput7');
+const stepHelpButton7 = document.getElementById('stepHelpButton7');
+const stepExplanation7 = document.getElementById('stepExplanation7');
+const stepReveal7 = document.getElementById('stepReveal7');
+const stepHide7 = document.getElementById('stepHide7');
+const stepConfirmButton7 = document.getElementById('stepConfirmButton7');
+const stepHide7a = document.getElementById('stepHide7a');
 
 ///Initialisation
 
@@ -567,6 +578,34 @@ function trainer1() {
 
     };
 
+    /// FINDING CONSONANT GRADATION
+
+    stepAnswer7.innerHTML = dataGradation;
+    stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>What consonant gradation (if any) applies here?<br/><br/>";
+
+    stepConfirmButton7.onclick = function () {
+
+        if (stepInput7.value == dataGradation) {
+
+            stepHide7a.style.display = 'none';
+            stepHide7.style.display = 'none';
+
+            var explanationText = "";
+            if (dataGradation == "none") {
+                explanationText = "You're absolutely right! This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
+            } else {
+                explanationText = "You're absolutely right! This word will undergo the <b>" + dataGradation + "</b> gradation.";
+            };
+
+            stepExplanation7.innerHTML = explanationText;
+            stepAnswer7.style.display = "";
+
+        } else {
+
+            stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>That's not correct... try again or use the help button<br/><br/>";
+        };
+
+    }
 
 };
 
@@ -785,8 +824,32 @@ stepReveal6.onclick = function () {
 
 };
 
+stepHelpButton7.onclick = function () {
+
+    tableCons.style.display = "";
+    stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
 
 
+};
+
+
+stepReveal7.onclick = function () {
+
+    stepHide7a.style.display = 'none';
+    stepHide7.style.display = 'none';
+
+    var explanationText = "";
+    if (dataGradation == "none") {
+        explanationText = "This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
+    } else {
+        explanationText = "This word will undergo the <b>" + dataGradation + "</b> gradation.";
+    };
+
+    stepExplanation7.innerHTML = explanationText;
+    stepAnswer7.style.display = "";
+
+
+};
 
 
 

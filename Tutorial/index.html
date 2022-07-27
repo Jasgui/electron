@@ -356,39 +356,50 @@
 
                                 <div class="title">
                                     <i class="dropdown icon"></i>
-                                    <span id='stepTitle'>Step 5 - Applying consonant gradation</span>
-                                    <h5 class="ui right floated header" id='stepAnswer7' style="display: none">portaalla</h5>
+                                    <span>Step 5a - Finding relevant consonant gradation</span>
+                                    <h5 class="ui right floated header" id='stepAnswer7' style="display: none"></h5>
                                 </div>
                                 <div class="content">
-                                    <span id='stepPrompt7a'>...</span>
+                                    <div>
+                                        <section id='stepHide7'><span id='stepPrompt7'></span>
 
-                                    <select class="ui dropdown" id="stepInput7">
-                                        <option value="">Choose gradation</option>
-                                        <option value="trans."><i>NONE</i></option>
-                                        <option value="nom.">pp / p</option>
-                                        <option value="acc.">tt / t</option>
-                                        <option value="gen.">kk / k</option>
-                                        <option value="part.">p / v</option>
-                                        <option value="ines.">t / d</option>
-                                        <option value="elat.">k / ∅</option>
-                                        <option value="illat.">k / v</option>
-                                        <option value="ades.">mp / mm</option>
-                                        <option value="abl.">nt / nn</option>
-                                        <option value="allat.">nk / ng</option>
-                                        <option value="ess.">lt / ll</option>
-                                        <option value="trans.">rt / rr</option>
-                                        <option value="trans.">lk / lj</option>
-                                        <option value="trans.">rk / rj</option>
-                                    </select>
-                                    <span id='stepPrompt7b'>...</span>
+                                            <select class="ui dropdown" id="stepInput7">
+                                                <option value="">Gradation</option>
+                                                <option value="none">none</option>
+                                                <option value="pp /p">pp / p</option>
+                                                <option value="tt / t">tt / t</option>
+                                                <option value="kk / k">kk / k</option>
+                                                <option value="p / v">p / v</option>
+                                                <option value="t / d">t / d</option>
+                                                <option value="k / ∅ä">k / ∅</option>
+                                                <option value="k / v">k / v</option>
+                                                <option value="mp / mm">mp / mmn</option>
+                                                <option value="nt / nn">nt / nn</option>
+                                                <option value="nk / ng">nk / ng</option>
+                                                <option value="lt / ll">lt / ll</option>
+                                                <option value="rt / rr">rt / rr</option>
+                                                <option value="ht / hd">ht / hd</option>
+                                                <option value="lk / lj">lk / lj</option>
+                                                <option value="rk / rj">rk / rj</option>
+                                                <option value="other">other</option>
+                                            </select>
+                                            <button class="ui teal icon button" id='stepConfirmButton7'><i class="check icon"></i></button>
 
-                                    <div class="ui transparent input"><input type="text" placeholder="_" id='stepInput7'></div>
-                                    <br /><br />
-                                    <button class="ui teal basic button" id='stepHelpButton7'>Help with the endings</button>
-                                    <br /><br />
-                                    <p id='stepExplanation7'>...</p>
-                                    <div><button class="ui right floated icon button" id='stepReveal7'><i class="eye slash icon"></i></button>
-                                        <br />
+
+                                            <br /><br />
+
+
+                                        </section>
+                                    </div>
+                                    <p id='stepExplanation7'></p>
+                                    <div>
+                                        <section id='stepHide7a'>
+                                            <button class="ui teal basic button" id='stepHelpButton7'>Help me with the gradation</button>
+                                            <br /><br />
+                                            <div><button class="ui right floated icon button" id='stepReveal7'><i class="eye slash icon"></i></button>
+                                                <br />
+                                            </div>
+                                        </section>
                                     </div>
 
                                 </div>
