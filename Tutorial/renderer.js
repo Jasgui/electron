@@ -1,32 +1,3 @@
-const dataPhrase = "in the shop";
-const dataResult = "kaupassa";
-const dataResultNoGradation = "kauppassa";
-const dataWordEnglish = "a shop";
-const dataWordFinnish = "kauppa";
-const dataWordFinnishHighlighted = "kaupp<b>a</b>";
-const dataCase = "illative";
-const dataCaseTranslation = "in ... / inside ...";
-const dataStem1 = "kauppa-";
-const dataStem2 = "kauppax-";
-const dataTypeReason = "ends in a vowel that is not <b>e</b> or <b>i</b>";
-const dataType = "5";
-const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basically the same as the nominative as well";
-const dataEndings = "-seen";
-const dataReason = "the stem is one syllable";
-const dataStemHighlighted = "<b>|maa|</b>";
-const dataEndingsFinal = "-sta";
-const dataGradation = "tt → t";
-const dataStemCut = "|kaup|pa-";
-const dataBeforeGradationCut = "*|kaup|pas|ta";
-const dataStemCutUnderlined = "|kaup|<u>pa</u>-";
-const dataBeforeGradationCutUnderlined = "*|kaup|<u>pas</u>|ta";
-const dataStemSyllable = "|pa|";
-const dataStemSyllableStatus = "open";
-const dataBeforeGradationSyllable = "|pas|";
-const dataBeforeGradationSyllableStatus = "closed";
-const dataConsonantBefore = "tt";
-const dataConsonantAfter = "t";
-
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
 const helperText = document.getElementById('helperText');
@@ -165,13 +136,55 @@ const accordion = document.getElementById('accordion');
 ///Initialisation
 
 
-/*
-fetch("data.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(jsondata => console.log(jsondata));
-*/
+
+
+console.log(datajson);
+
+var number = getRandomInt(0, 2);
+
+console.log(number);
+console.log(datajson[number]);
+console.log(datajson[number]["dataEndingsFinal"]);
+
+
+var dataPhrase = datajson[number]["dataPhrase"];
+var dataResult = datajson[number]["dataResult"];
+var dataResultNoGradation = datajson[number]["dataResultNoGradation"];
+var dataWordEnglish = datajson[number]["dataWordEnglish"];
+var dataWordFinnish = datajson[number]["dataWordFinnish"];
+var dataWordFinnishHighlighted = datajson[number]["dataWordFinnishHighlighted"];
+var dataCase = datajson[number]["dataCase"];
+var dataCaseTranslation = datajson[number]["dataCaseTranslation"];
+var dataStem1 = datajson[number]["dataStem1"];
+var dataStem2 = datajson[number]["dataStem2"];
+var dataTypeReason = datajson[number]["dataTypeReason"];
+var dataType = datajson[number]["dataType"];
+var dataTypeExplanation = datajson[number]["dataTypeExplanation"];
+var dataEndings = datajson[number]["dataEndings"];
+var dataReason = datajson[number]["dataReason"];
+var dataStemHighlighted = datajson[number]["dataStemHighlighted"];
+var dataEndingsFinal = datajson[number]["dataEndingsFinal"];
+var dataGradation = datajson[number]["dataGradation"];
+var dataStemCut = datajson[number]["dataStemCut"];
+var dataBeforeGradationCut = datajson[number]["dataBeforeGradationCut"];
+var dataStemCutUnderlined = datajson[number]["dataStemCutUnderlined"];
+var dataBeforeGradationCutUnderlined = datajson[number]["dataBeforeGradationCutUnderlined"];
+var dataStemSyllable = datajson[number]["dataStemSyllable"];
+var dataStemSyllableStatus = datajson[number]["dataStemSyllableStatus"];
+var dataBeforeGradationSyllable = datajson[number]["dataBeforeGradationSyllable"];
+var dataBeforeGradationSyllableStatus = datajson[number]["dataBeforeGradationSyllableStatus"];
+var dataConsonantBefore = datajson[number]["dataConsonantBefore"];
+var dataConsonantAfter = datajson[number]["dataConsonantAfter"];
+
+var dataWordFinnish = get_dataWordFinnish_from_dataWordFinnishHighlighted(dataWordFinnishHighlighted);
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 
 $('.ui.dropdown')
@@ -306,7 +319,28 @@ function step5() {
 
 };
 
+
+function get_dataWordFinnish_from_dataWordFinnishHighlighted(text) {
+
+    return text.replace(/<b>/g, '').replace(/<\/b>/g, '');
+
+};
+
+
 function trainer1() {
+
+
+    var test1 = "kaupp<b>a</b>";
+    var test2 = test1.replace(/<b>/g, '');
+    var test3 = test2.replace(/<\/b>/g, '');
+
+    console.log(test2);
+    console.log(test3);
+
+    var test4 = get_dataWordFinnish_from_dataWordFinnishHighlighted("kauff<b>something</b>");
+    console.log(test4);
+
+
 
     inputField.style.display = "";
     trainerButton.style.display = "";
@@ -924,8 +958,6 @@ trainerButton.onclick = function () {
 
         $('.ui.basic.modal')
             .modal('show');
-    } else if (inputField.value == dataResultNoGradation) {
-        console.log("almost, you just missed the gradation")
     };
 
 
