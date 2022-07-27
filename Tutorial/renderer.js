@@ -3,10 +3,11 @@ const dataResult = "kaupassa";
 const dataResultNoGradation = "kauppassa";
 const dataWordEnglish = "a shop";
 const dataWordFinnish = "kauppa";
+const dataWordFinnishHighlighted = "kaupp<b>a</b>";
 const dataCase = "inessive";
 const dataCaseTranslation = "in ... / inside ...";
 const dataStem1 = "kauppa-";
-const dataStem2 = "kauppa-";
+const dataStem2 = "kauppax-";
 const dataTypeReason = "ends in a vowel that is not <b>e</b> or <b>i</b>";
 const dataType = "5";
 const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basically the same as the nominative as well";
@@ -101,6 +102,15 @@ const stepHide3 = document.getElementById('stepHide3');
 const stepConfirmButton3 = document.getElementById('stepConfirmButton3');
 const stepHide3a = document.getElementById('stepHide3a');
 
+const stepAnswer4 = document.getElementById('stepAnswer4');
+const stepPrompt4 = document.getElementById('stepPrompt4');
+const stepInput4 = document.getElementById('stepInput4');
+const stepHelpButton4 = document.getElementById('stepHelpButton4');
+const stepExplanation4 = document.getElementById('stepExplanation4');
+const stepReveal4 = document.getElementById('stepReveal4');
+const stepHide4 = document.getElementById('stepHide4');
+const stepConfirmButton4 = document.getElementById('stepConfirmButton4');
+const stepHide4a = document.getElementById('stepHide4a');
 
 
 
@@ -360,6 +370,7 @@ function trainer1() {
             stepHide3a.style.display = 'none';
             stepExplanation3.innerHTML = "Exactly! The stems for <i>" + dataWordFinnish + "</i> are <b>" + dataStem1 + " / " + dataStem2 + "</b>.";
             stepAnswer3.style.display = "";
+
         } else if (step1input_clean == dataStem1_clean) {
 
             stepPrompt3.innerHTML = "The first stem is right, but something is off with Stem 2. You can try again or use the help button.<br/><br/>";
@@ -377,6 +388,72 @@ function trainer1() {
             stepInput3a.value = "";
             stepInput3b.value = "";
             stepInput3a.focus();
+        };
+
+    };
+
+    /// RIGHT STEM
+
+    var rightStem = "";
+    if (dataCase == "partitive") {
+        stepAnswer4.innerHTML = dataStem2;
+        rightStem = dataStem2;
+    } else {
+        stepAnswer4.innerHTML = dataStem1;
+        rightStem = dataStem1;
+    };
+
+    stepPrompt4.innerHTML = "Now an easy part: which of the two stems should you use in this case?";
+
+    stepInput4.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+
+            stepInput4clicked();
+
+        };
+
+    });
+    stepConfirmButton4.onclick = function () {
+        stepInput4clicked();
+    };
+
+    function stepInput4clicked() {
+
+
+        var stepinput_clean = "";
+        var answer_clean = rightStem.slice(0, -1);
+        var dataStem1_clean = dataStem1.slice(0, -1);
+        var dataStem2_clean = dataStem2.slice(0, -1);
+
+        if (stepInput4.value.slice(-1) == "-") {
+            stepinput_clean = stepInput4.value.slice(0, -1);
+        } else {
+            stepinput_clean = stepInput4.value;
+        };
+
+        if (stepinput_clean == answer_clean) {
+
+            stepHide4.style.display = 'none';
+            stepHide4a.style.display = 'none';
+            stepExplanation4.innerHTML = "Yes! The right stem to use here is <b>" + rightStem + "</b>."
+            stepAnswer4.style.display = "";
+
+        } else if (stepinput_clean == dataStem1_clean || stepinput_clean == dataStem2_clean) {
+
+            if (dataCase == "partitive") {
+                var explanationText = "It looks like you chose the wrong stem.<br/><br/>For the <i>partitive<i/> you always use stem 2: <b>" + dataStem2 + "</b>.";
+            } else {
+                var explanationText = "<i class='exclamation triangle icon'></i> It looks like you chose the wrong stem.<br/><br/>Stem 2 is only used for the <i>partitive</i>. For all other cases, including the <i>" + dataCase + "</i> you need to use stem 1: <b>" + dataStem1 + "</b>.";
+                stepHide4.style.display = 'none';
+                stepHide4a.style.display = 'none';
+                stepAnswer4.style.display = "";
+            };
+
+            stepExplanation4.innerHTML = explanationText;
+
+        } else {
+            stepExplanation4.innerHTML = "Oops, that doesn't seem to be a valid root for this word. Maybe you should check the previous Step?";
         };
 
     };
@@ -417,7 +494,7 @@ stepHelpButton3.onclick = function () {
 
     if (stepHelpButton3.name == "more help") {
 
-        stepExplanation3.innerHTML = "Because <i>" + dataWordFinnish + "</i> " + dataTypeReason + ", it belongs to group " + dataType + ". I have highlighted it in the table. Does that help?"
+        stepExplanation3.innerHTML = "Because <i>" + dataWordFinnishHighlighted + "</i> " + dataTypeReason + ", it belongs to group " + dataType + ". I have highlighted it in the table. Does that help?"
         document.getElementById("type" + dataType).className = "warning";
         stepHelpButton3.innerHTML = "I still need help";
         stepHelpButton3.name = "last help";
@@ -443,6 +520,23 @@ stepReveal3.onclick = function () {
     stepHide3a.style.display = 'none';
     stepExplanation3.innerHTML = "The stems for the words are <b>" + dataStem1 + " / " + dataStem2 + "</b>."
     stepAnswer3.style.display = "";
+
+};
+
+stepReveal4.onclick = function () {
+
+    var rightStem = "";
+    if (dataCase == "partitive") {
+        rightStem = dataStem2;
+    } else {
+        rightStem = dataStem1;
+    };
+
+
+    stepHide4.style.display = 'none';
+    stepHide4a.style.display = 'none';
+    stepExplanation4.innerHTML = "The stem for the <i>" + dataCase + "</i> is <b>" + rightStem + "</b>.";
+    stepAnswer4.style.display = "";
 
 };
 
