@@ -5,6 +5,11 @@ const dataWordEnglish = "a shop";
 const dataWordFinnish = "kauppa";
 const dataCase = "inessive";
 const dataCaseTranslation = "in ... / inside ...";
+const dataStem1 = "kauppa-";
+const dataStem2 = "kauppa-";
+const dataTypeReason = "ends in a vowel that is not <b>e</b> or <b>i</b>";
+const dataType = "5";
+const dataTypeExplanation = "stem 1 and stem 2 are the same and they are basically the same as the nominative as well";
 
 //////////////////////////////////
 const mainText = document.getElementById('mainText');
@@ -70,7 +75,7 @@ const trainerButton = document.getElementById('trainerButton');
 const stepAnswer1 = document.getElementById('stepAnswer1');
 const stepPrompt1 = document.getElementById('stepPrompt1');
 const stepInput1 = document.getElementById('stepInput1');
-const stepHelpButton1 = document.getElementById('stepHelpButton1');
+var stepHelpButton1 = document.getElementById('stepHelpButton1');
 const stepExplanation1 = document.getElementById('stepExplanation1');
 
 const stepAnswer2 = document.getElementById('stepAnswer2');
@@ -81,7 +86,22 @@ const stepExplanation2 = document.getElementById('stepExplanation2');
 const stepReveal2 = document.getElementById('stepReveal2');
 const stepConfirmButton2 = document.getElementById('stepConfirmButton2');
 
-const test = document.getElementById('test');
+const stepHide1 = document.getElementById('stepHide1');
+const stepHide2 = document.getElementById('stepHide2');
+const stepHide2a = document.getElementById('stepHide2a');
+
+const stepAnswer3 = document.getElementById('stepAnswer3');
+const stepPrompt3 = document.getElementById('stepPrompt3');
+const stepInput3a = document.getElementById('stepInput3a');
+const stepInput3b = document.getElementById('stepInput3b');
+const stepHelpButton3 = document.getElementById('stepHelpButton3');
+const stepExplanation3 = document.getElementById('stepExplanation3');
+const stepReveal3 = document.getElementById('stepReveal3');
+const stepHide3 = document.getElementById('stepHide3');
+const stepConfirmButton3 = document.getElementById('stepConfirmButton3');
+const stepHide3a = document.getElementById('stepHide3a');
+
+
 
 
 ///Initialisation
@@ -242,18 +262,19 @@ function trainer1() {
             event.preventDefault();
 
             if (stepInput1.value == dataWordFinnish) {
-
-                stepPrompt1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
+                stepHide1.style.display = 'none';
+                stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
                 stepAnswer1.style.display = "";
-                stepInput1.style.display = "none";
 
             } else {
 
-                stepPrompt1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
+                stepHide1.style.display = 'none';
+                stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
                 stepAnswer1.style.display = "";
-                stepInput1.style.display = "none";
 
-            }
+
+
+            };
 
 
         }
@@ -264,7 +285,7 @@ function trainer1() {
     /// CASE
 
     stepAnswer2.innerHTML = dataCase;
-    stepPrompt2.innerHTML = "So we are trying to say <i><b>" + dataPhrase + "</b></i> in Finnish. What case should you use to translate <i>" + dataCaseTranslation + "</i>?<br/><br/>If you need help, use the button.";
+    stepPrompt2.innerHTML = "So we are trying to say <i><b>" + dataPhrase + "</b></i> in Finnish.<br/><br/> What case should you use to translate <i>" + dataCaseTranslation + "</i>?<br/><br/>If you need help, use the button.";
 
     stepConfirmButton2.onclick = function () {
 
@@ -272,19 +293,93 @@ function trainer1() {
 
         if (stepInput2.value == dataCase) {
 
-            stepPrompt2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
-            stepInput2.style.display = "none";
-            stepConfirmButton2.style.display = "none";
-            stepHelpButton2.style.display = "none";
+            stepHide2.style.display = 'none';
+            stepHide2a.style.display = 'none';
+            stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
             stepAnswer2.style.display = "";
 
         } else {
 
-            stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button."
+            stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button.<br/><br/>";
             stepInput1.value = "";
         };
 
-    }
+    };
+
+
+    /// STEMS
+
+    stepAnswer3.innerHTML = dataStem1 + " / " + dataStem2;
+    stepPrompt3.innerHTML = "What are the stems for the word we're working with? If you know them, type them below. If not, you can always use the help button.<br/><br/>"
+
+    stepConfirmButton3.onclick = function () {
+
+        confirmButton3clicked();
+
+
+
+    };
+
+
+    stepInput3b.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+            confirmButton3clicked();
+        }
+
+    });
+
+    function confirmButton3clicked() {
+
+
+        // Cases to deal with final hyphen
+
+        var step1input_clean = "";
+        var step2input_clean = "";
+        var dataStem1_clean = dataStem1.slice(0, -1);
+        var dataStem2_clean = dataStem2.slice(0, -1);
+
+        if (stepInput3a.value.slice(-1) == "-") {
+            step1input_clean = stepInput3a.value.slice(0, -1);
+        } else {
+            step1input_clean = stepInput3a.value;
+        };
+
+
+        if (stepInput3b.value.slice(-1) == "-") {
+            step2input_clean = stepInput3b.value.slice(0, -1);
+        } else {
+            step2input_clean = stepInput3b.value;
+        };
+
+
+        if (step1input_clean == dataStem1_clean && step2input_clean == dataStem2_clean) {
+
+            stepHide3.style.display = 'none';
+            stepHide3a.style.display = 'none';
+            stepExplanation3.innerHTML = "Exactly! The stems for <i>" + dataWordFinnish + "</i> are <b>" + dataStem1 + " / " + dataStem2 + "</b>.";
+            stepAnswer3.style.display = "";
+        } else if (step1input_clean == dataStem1_clean) {
+
+            stepPrompt3.innerHTML = "The first stem is right, but something is off with Stem 2. You can try again or use the help button.<br/><br/>";
+            stepInput3b.value = "";
+            stepInput3b.focus();
+        } else if (step2input_clean == dataStem2_clean) {
+
+            stepPrompt3.innerHTML = "The second stem is right, but something is off with Stem 1. You can try again or use the help button.<br/><br/>";
+            stepInput3a.value = "";
+            stepInput3a.focus();
+        } else {
+
+            stepPrompt3.innerHTML = "Oops, not what I was expecting... You can try again or use the help button.<br/><br/>";
+
+            stepInput3a.value = "";
+            stepInput3b.value = "";
+            stepInput3a.focus();
+        };
+
+    };
 
 };
 
@@ -293,12 +388,13 @@ function trainer1() {
 
 
 stepHelpButton1.onclick = function () {
-
-    stepHelpButton1.style.display = "none !important";
+    stepHide1.style.display = 'none';
     stepExplanation1.innerHTML = "The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
     stepAnswer1.style.display = "";
 
 };
+
+
 
 stepHelpButton2.onclick = function () {
 
@@ -308,8 +404,45 @@ stepHelpButton2.onclick = function () {
 
 stepReveal2.onclick = function () {
 
+    stepHide2a.style.display = 'none';
+    stepHide2.style.display = 'none';
+    stepExplanation2.innerHTML = "The case we need to use is the <b>" + dataCase + "</b>.";
     stepAnswer2.style.display = "";
 
+};
+
+
+
+stepHelpButton3.onclick = function () {
+
+    if (stepHelpButton3.name == "more help") {
+
+        stepExplanation3.innerHTML = "Because <i>" + dataWordFinnish + "</i> " + dataTypeReason + ", it belongs to group " + dataType + ". I have highlighted it in the table. Does that help?"
+        document.getElementById("type" + dataType).className = "warning";
+        stepHelpButton3.innerHTML = "I still need help";
+        stepHelpButton3.name = "last help";
+
+    } else if (stepHelpButton3.name == "last help") {
+
+        stepExplanation3.innerHTML = "So for this type, " + dataTypeExplanation + ".<br/><br/>Try again typing the stems or use the reveal <i class='eye slash icon'></i> button.";
+
+    } else {
+        stepExplanation3.innerHTML = "On the right you can have a look at the different types of words and try to find the one that matches here. Then, try to type the stems again.<br/><br/>If you need more help, press the help button again.";
+        stepHelpButton3.innerHTML = "I need more help";
+        stepHelpButton3.name = "more help";
+        tableStems.style.display = "";
+
+    };
+
+
+};
+
+stepReveal3.onclick = function () {
+
+    stepHide3.style.display = 'none';
+    stepHide3a.style.display = 'none';
+    stepExplanation3.innerHTML = "The stems for the words are <b>" + dataStem1 + " / " + dataStem2 + "</b>."
+    stepAnswer3.style.display = "";
 
 };
 

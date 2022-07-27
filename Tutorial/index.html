@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/ 'unsafe-inline'; script-src 'self'; font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data:; style-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com/" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com/ 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/ https://fonts.gstatic.com/ data:; style-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com/; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com/" />
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
     <title class="ui large header">Hello from Electron renderer!</title>
 </head>
@@ -138,12 +138,16 @@
                                     <span>Finding the right Finnish word</span>
                                     <h5 class="ui right floated header" id='stepAnswer1' style="display: none">porras</h5>
                                 </div>
-                                <div class="content">
-                                    <span id='stepPrompt1'></span>
-                                    <div class="ui transparent input"><input type="text" placeholder="_" id='stepInput1'></div>
-                                    <br /><br />
-                                    <button class="ui teal basic button" id='stepHelpButton1'>I don't know the word</button>
-                                    <br /><br />
+                                <div class="content" id="insertButton">
+                                    <div>
+                                        <section id='stepHide1'>
+                                            <span id='stepPrompt1'></span>
+                                            <div class="ui transparent input"><input type="text" placeholder="_" id='stepInput1'></div>
+                                            <br /><br />
+                                            <div><button class="ui teal basic button" id='stepHelpButton1' onclick="clickthebutton()">I don't know the word</button></div>
+                                            <br /><br />
+                                        </section>
+                                    </div>
                                     <p id='stepExplanation1' style="display: none"></p>
 
                                 </div>
@@ -157,32 +161,40 @@
                                     <h5 class="ui right floated header" id='stepAnswer2' style="display: none">adessive</h5>
                                 </div>
                                 <div class="content">
-                                    <span id='stepPrompt2'>...</span>
+                                    <div>
+                                        <section id='stepHide2'><span id='stepPrompt2'></span>
 
-                                    <select class="ui dropdown" id="stepInput2">
-                                        <option value="">Choose a case</option>
-                                        <option value="nominative">nominative</option>
-                                        <option value="accusative">accusative</option>
-                                        <option value="genitive">genitive</option>
-                                        <option value="partitive">partitive</option>
-                                        <option value="inessive">inessive</option>
-                                        <option value="elative">elative</option>
-                                        <option value="illative">illative</option>
-                                        <option value="adessive">adessive</option>
-                                        <option value="ablative">ablative</option>
-                                        <option value="allative">allative</option>
-                                        <option value="essive">essive</option>
-                                        <option value="translative">translative</option>
-                                    </select>
-                                    <button class="ui teal icon button" id='stepConfirmButton2'><i class="check icon"></i></button>
+                                            <select class="ui dropdown" id="stepInput2">
+                                                <option value="">Choose a case</option>
+                                                <option value="nominative">nominative</option>
+                                                <option value="accusative">accusative</option>
+                                                <option value="genitive">genitive</option>
+                                                <option value="partitive">partitive</option>
+                                                <option value="inessive">inessive</option>
+                                                <option value="elative">elative</option>
+                                                <option value="illative">illative</option>
+                                                <option value="adessive">adessive</option>
+                                                <option value="ablative">ablative</option>
+                                                <option value="allative">allative</option>
+                                                <option value="essive">essive</option>
+                                                <option value="translative">translative</option>
+                                            </select>
+                                            <button class="ui teal icon button" id='stepConfirmButton2'><i class="check icon"></i></button>
 
 
-                                    <br /><br />
-                                    <button class="ui teal basic button" id='stepHelpButton2'>Help me with the cases</button>
-                                    <br /><br />
-                                    <p id='stepExplanation2'>...</p>
-                                    <div><button class="ui right floated icon button" id='stepReveal2'><i class="eye slash icon"></i></button>
-                                        <br />
+                                            <br /><br />
+                                            <button class="ui teal basic button" id='stepHelpButton2'>Help me with the cases</button>
+                                            <br /><br />
+
+                                        </section>
+                                    </div>
+                                    <p id='stepExplanation2'></p>
+                                    <div>
+                                        <section id='stepHide2a'>
+                                            <div><button class="ui right floated icon button" id='stepReveal2'><i class="eye slash icon"></i></button>
+                                                <br />
+                                            </div>
+                                        </section>
                                     </div>
 
                                 </div>
@@ -197,17 +209,25 @@
                                     <h5 class="ui right floated header" id='stepAnswer3' style="display: none">portaa- | porras-</h5>
                                 </div>
                                 <div class="content">
-                                    <span id='stepPrompt3'>...</span>
-                                    <div class="ui transparent input"><input type="text" placeholder="stem 1" id='stepInput3a'></div>
-                                    <div class="ui transparent input"><input type="text" placeholder="stem 2" id='stepInput3b'></div>
-                                    <br /><br />
-                                    <button class="ui teal basic button" id='stepHelpButton3'>Help with the stems</button>
-                                    <br /><br />
-                                    <p id='stepExplanation3'>...</p>
-                                    <div><button class="ui right floated icon button" id='stepReveal3'><i class="eye slash icon"></i></button>
-                                        <br />
+                                    <div>
+                                        <section id='stepHide3'>
+                                            <span id='stepPrompt3'>...</span>
+                                            <div class="ui input"><input type="text" placeholder="stem 1" id='stepInput3a'></div>
+                                            <div class="ui input"><input type="text" placeholder="stem 2" id='stepInput3b'></div>
+                                            <button class="ui teal icon button" id='stepConfirmButton3'><i class="check icon"></i></button>
+                                            <br /><br />
+                                            <button class="ui teal basic button" id='stepHelpButton3'>Help with the stems</button>
+                                            <br /><br />
+                                        </section>
                                     </div>
-
+                                    <p id='stepExplanation3'>...</p>
+                                    <div>
+                                        <section id='stepHide3a'>
+                                            <div><button class="ui right floated icon button" id='stepReveal3'><i class="eye slash icon"></i></button>
+                                                <br />
+                                            </div>
+                                        </section>
+                                    </div>
                                 </div>
 
                                 <!-- STEP 2 - RIGHT STEM -->
@@ -356,85 +376,85 @@
                     </thead>
                     <tbody>
 
-                        <tr>
+                        <tr id='type1'>
                             <td data-label="Type">1</td>
                             <td data-label="Name">-e<br />liik<b>e</b></td>
                             <td data-label="Age">-ee<br />lii<i>kk</i><b>ee</b>-</td>
                             <td data-label="Job">-e<br />liik<b>e</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type2'>
                             <td data-label="Type">2</td>
                             <td data-label="Name">-i<br />tunt<b>i</b></td>
                             <td data-label="Age">-i<br />tunt<b>i</b>-</td>
                             <td data-label="Job">-i<br />tunt<b>i</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type3'>
                             <td data-label="Type">3</td>
                             <td data-label="Name">-i<br />kiv<b>i</b></td>
                             <td data-label="Age">-e<br />kiv<b>e</b>-</td>
                             <td data-label="Job">-e<br />kiv<b>e</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type4'>
                             <td data-label="Type">4</td>
                             <td data-label="Name">-i<br />kiel<b>i</b></td>
                             <td data-label="Age">-e<br />kiel<b>e</b>-</td>
                             <td data-label="Job">-<br />kiel-</td>
                         </tr>
-                        <tr id="rowEndByVowel">
+                        <tr id='type5'>
                             <td data-label="Type">5</td>
                             <td data-label="Name">-vowel<br />tal<b>o</b></td>
                             <td data-label="Age">-vowel<br />tal<b>o</b>-</td>
                             <td data-label="Job">-vowel<br />tal<b>o</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type6'>
                             <td data-label="Type">6</td>
                             <td data-label="Name">-(s)i<br />ve<b>si</b></td>
                             <td data-label="Age">-te<br />ve<b>te</b>-</td>
                             <td data-label="Job">-t<br />ve<b>t</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type7'>
                             <td data-label="Type">7</td>
                             <td data-label="Name">-nen<br />nai<b>nen</b></td>
                             <td data-label="Age">-se<br />nai<b>se</b>-</td>
                             <td data-label="Job">-s<br />nai<b>s</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type8'>
                             <td data-label="Type">8</td>
                             <td data-label="Name">-as/äs/is<br />porr<b>as</b></td>
                             <td data-label="Age">-aa<br />po<i>rt</i><b>aa</b>-</td>
                             <td data-label="Job">-as<br />porr<b>as</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type9'>
                             <td data-label="Type">9</td>
                             <td data-label="Name">-us/ys<br />ajat<b>us</b></td>
                             <td data-label="Age">-ukse<br />ajat<b>ukse</b>-</td>
                             <td data-label="Job">-us<br />ajat<b>us</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type10'>
                             <td data-label="Type">10</td>
                             <td data-label="Name">-vowel+vowel+s<br />hyv<b>yys</b></td>
                             <td data-label="Age">-te<br />hyvyy<b>te</b>-</td>
                             <td data-label="Job">-t<br />hyvyy<b>t</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type11'>
                             <td data-label="Type">11</td>
                             <td data-label="Name">-in<br />yd<b>in</b></td>
                             <td data-label="Age">-ime<br />y<i>t</i><b>ime</b>-</td>
                             <td data-label="Job">-in<br />yd<b>in</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type12'>
                             <td data-label="Type">12</td>
                             <td data-label="Name">-ton/tön<br />työ<b>tön</b></td>
                             <td data-label="Age">-ttoma/ttömä<br />työ<b>ttömä</b>-</td>
                             <td data-label="Job">-ton/tön<br />työ<b>tön</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type13'>
                             <td data-label="Type">13</td>
                             <td data-label="Name">-ut/yt<br />ol<b>ut</b></td>
                             <td data-label="Age">-ue<br />ol<b>ue</b>-</td>
                             <td data-label="Job">-ut<br />ol<b>ut</b>-</td>
                         </tr>
-                        <tr>
+                        <tr id='type14'>
                             <td data-label="Type">14</td>
                             <td data-label="Name">other cons.<br />aske<b>l</b></td>
                             <td data-label="Age">-e<br />askel<b>e</b>-</td>
