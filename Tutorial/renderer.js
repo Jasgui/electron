@@ -261,6 +261,24 @@ function trainer1() {
 
     /// ENDINGS
 
+    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
+    var rightEnding = "";
+
+    if (dataCase == "partitive" || dataCase == "illative") {
+
+        rightEnding = dataEndings;
+
+    } else {
+
+        for (let i = 0; i < caseEndings.length; i++) {
+            if (caseEndings[i][0] == dataCase) {
+                rightEnding = caseEndings[i][1];
+            }
+        }
+
+    };
+
+
     stepAnswer5.innerHTML = rightEnding;
     stepPrompt5.innerHTML = "Let's now choose the right endings for that word in that case. As always, help is only one click away.";
 
