@@ -65,7 +65,7 @@ const stepPrompt1 = document.getElementById('stepPrompt1');
 const stepInput1 = document.getElementById('stepInput1');
 var stepHelpButton1 = document.getElementById('stepHelpButton1');
 const stepExplanation1 = document.getElementById('stepExplanation1');
-cont stepConfirmButton1 = document.getElementById('stepConfirmButton1');
+const stepConfirmButton1 = document.getElementById('stepConfirmButton1');
 
 const stepAnswer2 = document.getElementById('stepAnswer2');
 const stepPrompt2 = document.getElementById('stepPrompt2');
@@ -206,11 +206,6 @@ $(document).ready(function () {
 $('.ui.accordion')
     .accordion();
 
-stepConfirmButton1.onclick = function () {
-
-    console.log("button works");
-
-};
 
 
 function get_dataWordFinnish_from_dataWordFinnishHighlighted(text) {
@@ -291,7 +286,7 @@ function trainer1() {
 
     stepConfirmButton3.onclick = function () {
 
-        confirmButton3clicked();
+        stepConfirmButton3_clicked();
 
 
 
@@ -302,62 +297,12 @@ function trainer1() {
 
         if (event.key === "Enter") {
             event.preventDefault();
-            confirmButton3clicked();
+            stepConfirmButton3_clicked();
         }
 
     });
 
-    function confirmButton3clicked() {
 
-
-        // Cases to deal with final hyphen
-
-        var step1input_clean = "";
-        var step2input_clean = "";
-        var dataStem1_clean = dataStem1.slice(0, -1);
-        var dataStem2_clean = dataStem2.slice(0, -1);
-
-        if (stepInput3a.value.slice(-1) == "-") {
-            step1input_clean = stepInput3a.value.slice(0, -1);
-        } else {
-            step1input_clean = stepInput3a.value;
-        };
-
-
-        if (stepInput3b.value.slice(-1) == "-") {
-            step2input_clean = stepInput3b.value.slice(0, -1);
-        } else {
-            step2input_clean = stepInput3b.value;
-        };
-
-
-        if (step1input_clean == dataStem1_clean && step2input_clean == dataStem2_clean) {
-
-            stepHide3.style.display = 'none';
-            stepHide3a.style.display = 'none';
-            stepExplanation3.innerHTML = "Exactly! The stems for <i>" + dataWordFinnish + "</i> are <b>" + dataStem1 + " / " + dataStem2 + "</b>.";
-            stepAnswer3.style.display = "";
-
-        } else if (step1input_clean == dataStem1_clean) {
-
-            stepPrompt3.innerHTML = "The first stem is right, but something is off with Stem 2. You can try again or use the help button.<br/><br/>";
-            stepInput3b.value = "";
-            stepInput3b.focus();
-        } else if (step2input_clean == dataStem2_clean) {
-
-            stepPrompt3.innerHTML = "The second stem is right, but something is off with Stem 1. You can try again or use the help button.<br/><br/>";
-            stepInput3a.value = "";
-            stepInput3a.focus();
-        } else {
-
-            stepPrompt3.innerHTML = "Oops, not what I was expecting... You can try again or use the help button.<br/><br/>";
-
-            stepInput3a.value = "";
-            stepInput3b.value = "";
-            stepInput3a.focus();
-        };
-
-    };
 
     /// RIGHT STEM
 
@@ -376,54 +321,16 @@ function trainer1() {
 
         if (event.key === "Enter") {
 
-            stepInput4clicked();
+            stepConfirmButton4_clicked();
 
         };
 
     });
     stepConfirmButton4.onclick = function () {
-        stepInput4clicked();
+        stepConfirmButton4_clicked();
     };
 
-    function stepInput4clicked() {
 
-
-        var stepinput_clean = "";
-        var answer_clean = rightStem.slice(0, -1);
-        var dataStem1_clean = dataStem1.slice(0, -1);
-        var dataStem2_clean = dataStem2.slice(0, -1);
-
-        if (stepInput4.value.slice(-1) == "-") {
-            stepinput_clean = stepInput4.value.slice(0, -1);
-        } else {
-            stepinput_clean = stepInput4.value;
-        };
-
-        if (stepinput_clean == answer_clean) {
-
-            stepHide4.style.display = 'none';
-            stepHide4a.style.display = 'none';
-            stepExplanation4.innerHTML = "Yes! The right stem to use here is <b>" + rightStem + "</b>."
-            stepAnswer4.style.display = "";
-
-        } else if (stepinput_clean == dataStem1_clean || stepinput_clean == dataStem2_clean) {
-
-            if (dataCase == "partitive") {
-                var explanationText = "It looks like you chose the wrong stem.<br/><br/>For the <i>partitive<i/> you always use stem 2: <b>" + dataStem2 + "</b>.";
-            } else {
-                var explanationText = "<i class='exclamation triangle icon'></i> It looks like you chose the wrong stem.<br/><br/>Stem 2 is only used for the <i>partitive</i>. For all other cases, including the <i>" + dataCase + "</i> you need to use stem 1: <b>" + dataStem1 + "</b>.";
-                stepHide4.style.display = 'none';
-                stepHide4a.style.display = 'none';
-                stepAnswer4.style.display = "";
-            };
-
-            stepExplanation4.innerHTML = explanationText;
-
-        } else {
-            stepExplanation4.innerHTML = "Oops, that doesn't seem to be a valid root for this word. Maybe you should check the previous Step?";
-        };
-
-    };
 
     /// ENDINGS
     const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
@@ -460,41 +367,16 @@ function trainer1() {
 
         if (event.key === "Enter") {
 
-            stepConfirm6clicked();
+            stepConfirmButton6_clicked();
 
         };
 
     });
     stepConfirmButton6.onclick = function () {
-        stepConfirm6clicked();
+        stepConfirmButton6_clicked();
     };
 
-    function stepConfirm6clicked() {
 
-        var stepinput_clean = "";
-        var dataEndingsFinal_clean = dataEndingsFinal.slice(1);
-
-        if (stepInput6.value.slice(0, 1) == "-") {
-            stepinput_clean = stepInput6.value.slice(1);
-        } else {
-            stepinput_clean = stepInput6.value;
-        };
-
-        if (stepinput_clean == dataEndingsFinal_clean) {
-
-            stepHide6a.style.display = 'none';
-            stepHide6.style.display = 'none';
-            stepExplanation6.innerHTML = "Exact! The ending after applying the <i>vowel harmony</i> is <b>" + dataEndingsFinal + "</b>.";
-            stepAnswer6.style.display = "";
-
-        } else {
-
-            stepPrompt6.innerHTML = "That's not it... Try again or use the help.";
-
-        };
-
-
-    };
 
     /// FINDING CONSONANT GRADATION
 
@@ -505,12 +387,149 @@ function trainer1() {
 
 };
 
+
+stepConfirmButton1.onclick = function () {
+    stepConfirmButton1_clicked();
+};
+
+stepConfirmButton2.onclick = function () {
+    stepConfirmButton2_clicked();
+};
+
+stepConfirmButton3.onclick = function () {
+    stepConfirmButton3_clicked();
+};
+
+stepConfirmButton4.onclick = function () {
+    stepConfirmButton4_clicked();
+};
+
+stepConfirmButton5.onclick = function () {
+    stepConfirmButton5_clicked();
+};
+
 stepConfirmButton6.onclick = function () {
-    stepConfirm6clicked();
+    stepConfirmButton6_clicked();
+};
+
+stepConfirmButton7.onclick = function () {
+    stepConfirmButton7_clicked();
 };
 
 
-stepConfirmButton5.onclick = function () {
+function stepConfirmButton1_clicked() {
+
+};
+
+function stepConfirmButton2_clicked() {
+
+    if (stepInput2.value == dataCase) {
+
+        stepHide2.style.display = 'none';
+        stepHide2a.style.display = 'none';
+        stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
+        stepAnswer2.style.display = "";
+
+    } else {
+
+        stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button.<br/><br/>";
+        stepInput1.value = "";
+    };
+};
+
+function stepConfirmButton3_clicked() {
+
+
+    // Cases to deal with final hyphen
+
+    var step1input_clean = "";
+    var step2input_clean = "";
+    var dataStem1_clean = dataStem1.slice(0, -1);
+    var dataStem2_clean = dataStem2.slice(0, -1);
+
+    if (stepInput3a.value.slice(-1) == "-") {
+        step1input_clean = stepInput3a.value.slice(0, -1);
+    } else {
+        step1input_clean = stepInput3a.value;
+    };
+
+
+    if (stepInput3b.value.slice(-1) == "-") {
+        step2input_clean = stepInput3b.value.slice(0, -1);
+    } else {
+        step2input_clean = stepInput3b.value;
+    };
+
+
+    if (step1input_clean == dataStem1_clean && step2input_clean == dataStem2_clean) {
+
+        stepHide3.style.display = 'none';
+        stepHide3a.style.display = 'none';
+        stepExplanation3.innerHTML = "Exactly! The stems for <i>" + dataWordFinnish + "</i> are <b>" + dataStem1 + " / " + dataStem2 + "</b>.";
+        stepAnswer3.style.display = "";
+
+    } else if (step1input_clean == dataStem1_clean) {
+
+        stepPrompt3.innerHTML = "The first stem is right, but something is off with Stem 2. You can try again or use the help button.<br/><br/>";
+        stepInput3b.value = "";
+        stepInput3b.focus();
+    } else if (step2input_clean == dataStem2_clean) {
+
+        stepPrompt3.innerHTML = "The second stem is right, but something is off with Stem 1. You can try again or use the help button.<br/><br/>";
+        stepInput3a.value = "";
+        stepInput3a.focus();
+    } else {
+
+        stepPrompt3.innerHTML = "Oops, not what I was expecting... You can try again or use the help button.<br/><br/>";
+
+        stepInput3a.value = "";
+        stepInput3b.value = "";
+        stepInput3a.focus();
+    };
+
+};
+
+function stepConfirmButton4_clicked() {
+
+
+    var stepinput_clean = "";
+    var answer_clean = rightStem.slice(0, -1);
+    var dataStem1_clean = dataStem1.slice(0, -1);
+    var dataStem2_clean = dataStem2.slice(0, -1);
+
+    if (stepInput4.value.slice(-1) == "-") {
+        stepinput_clean = stepInput4.value.slice(0, -1);
+    } else {
+        stepinput_clean = stepInput4.value;
+    };
+
+    if (stepinput_clean == answer_clean) {
+
+        stepHide4.style.display = 'none';
+        stepHide4a.style.display = 'none';
+        stepExplanation4.innerHTML = "Yes! The right stem to use here is <b>" + rightStem + "</b>."
+        stepAnswer4.style.display = "";
+
+    } else if (stepinput_clean == dataStem1_clean || stepinput_clean == dataStem2_clean) {
+
+        if (dataCase == "partitive") {
+            var explanationText = "It looks like you chose the wrong stem.<br/><br/>For the <i>partitive<i/> you always use stem 2: <b>" + dataStem2 + "</b>.";
+        } else {
+            var explanationText = "<i class='exclamation triangle icon'></i> It looks like you chose the wrong stem.<br/><br/>Stem 2 is only used for the <i>partitive</i>. For all other cases, including the <i>" + dataCase + "</i> you need to use stem 1: <b>" + dataStem1 + "</b>.";
+            stepHide4.style.display = 'none';
+            stepHide4a.style.display = 'none';
+            stepAnswer4.style.display = "";
+        };
+
+        stepExplanation4.innerHTML = explanationText;
+
+    } else {
+        stepExplanation4.innerHTML = "Oops, that doesn't seem to be a valid root for this word. Maybe you should check the previous Step?";
+    };
+
+};
+
+function stepConfirmButton5_clicked() {
 
     if (stepInput5.value == rightEnding) {
 
@@ -527,38 +546,34 @@ stepConfirmButton5.onclick = function () {
 
 };
 
-stepConfirmButton4.onclick = function () {
-    stepInput4clicked();
-};
+function stepConfirmButton6_clicked() {
 
-stepConfirmButton3.onclick = function () {
+    var stepinput_clean = "";
+    var dataEndingsFinal_clean = dataEndingsFinal.slice(1);
 
-    confirmButton3clicked();
-};
+    if (stepInput6.value.slice(0, 1) == "-") {
+        stepinput_clean = stepInput6.value.slice(1);
+    } else {
+        stepinput_clean = stepInput6.value;
+    };
 
-stepConfirmButton2.onclick = function () {
+    if (stepinput_clean == dataEndingsFinal_clean) {
 
-    console.log(stepInput2.value);
-
-    if (stepInput2.value == dataCase) {
-
-        stepHide2.style.display = 'none';
-        stepHide2a.style.display = 'none';
-        stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
-        stepAnswer2.style.display = "";
+        stepHide6a.style.display = 'none';
+        stepHide6.style.display = 'none';
+        stepExplanation6.innerHTML = "Exact! The ending after applying the <i>vowel harmony</i> is <b>" + dataEndingsFinal + "</b>.";
+        stepAnswer6.style.display = "";
 
     } else {
 
-        stepPrompt2.innerHTML = "No... that's not the right case. You can try again or you can use the help button.<br/><br/>";
-        stepInput1.value = "";
+        stepPrompt6.innerHTML = "That's not it... Try again or use the help.";
+
     };
+
 
 };
 
-stepConfirmButton7.onclick = function () {
-
-    console.log(stepInput7.value);
-    console.log(dataGradation);
+function stepConfirmButton7_clicked() {
 
     if (stepInput7.value == dataGradation) {
 
@@ -580,8 +595,8 @@ stepConfirmButton7.onclick = function () {
         stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>That's not correct... try again or use the help button<br/><br/>";
     };
 
-};
 
+};
 
 
 stepHelpButton1.onclick = function () {
@@ -594,15 +609,6 @@ stepHelpButton1.onclick = function () {
 stepHelpButton2.onclick = function () {
 
     stepExplanation2.innerHTML = "I have opened a list of cases with their basic meanings on the right. Try to choose the right one with the help of the table.<br/><br/> If you're still having issues, the reveal <i class='eye slash icon'></i> button is there for you.";
-
-};
-
-stepReveal2.onclick = function () {
-
-    stepHide2a.style.display = 'none';
-    stepHide2.style.display = 'none';
-    stepExplanation2.innerHTML = "The case we need to use is the <b>" + dataCase + "</b>.";
-    stepAnswer2.style.display = "";
 
 };
 
@@ -627,6 +633,63 @@ stepHelpButton3.onclick = function () {
 
     };
 
+
+};
+
+stepHelpButton4.onclick = function () {
+
+};
+
+stepHelpButton5.onclick = function () {
+
+    if (dataCase == "partitive") {
+        partitiveHelp();
+    } else if (dataCase == "illative") {
+        illativeHelp();
+    } else {
+        otherCasesHelp();
+    };
+};
+
+stepHelpButton6.onclick = function () {
+
+    tableVocal1.style.display = "";
+    tableVocal2.style.display = "";
+    stepExplanation6.innerHTML = "Look at the <i>vowel harmony</i> table and remember to use the right vowel for the ending."
+
+};
+
+stepHelpButton7.onclick = function () {
+
+    if (stepHelpButton7.name == "status 2") {
+
+        stepExplanation7.innerHTML = "First, check the status of the last syllable of the stem. Does it goes open > closed, closed > open or remains the same?<br/><br/>If it changes, the consonant(s) right before that syllable change from one column to the other in the same order."
+        stepHelpButton7.innerHTML = "I'm still not sure";
+        stepHelpButton7.name = "status 3";
+
+    } else if (stepHelpButton7.name == "status 3") {
+
+        stepExplanation7.innerHTML = "Ok, so the stem is <i>" + stepAnswer4.innerHTML + "</i> and the stem+ending is <i>" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</i>.<br/><br/>We cut them in syllables:<br/><br/>" + dataStemCut + " and " + dataBeforeGradationCut + "<br/><br/>Then we look at the last syllable from the stem:<br/><br/> " + dataStemCutUnderlined + " and " + dataBeforeGradationCutUnderlined + "<br/><br/>The first one is <b>" + dataStemSyllable + "</b> and is <i>" + dataStemSyllableStatus + "</i> and the second one is <b>" + dataBeforeGradationSyllable + "</b> and is <i>" + dataBeforeGradationSyllableStatus + "</i>.<br/><br/>So from Stem > Word the syllable goes <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>The consonant(s) right before that syllable is <b>" + dataConsonantBefore + "</b> and it needs to also change from <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>In the table you can see that a <b>" + dataConsonantBefore + "</b> in an <i>" + dataStemSyllableStatus + " syllable</i> corresponds to a <b>" + dataConsonantAfter + "</b> in a <i>" + dataBeforeGradationSyllableStatus + " syllable</i><br/><br/>So in this case you need to apply <b>" + dataGradation + "</b>";
+
+    } else {
+
+        tableCons.style.display = "";
+        stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
+        stepHelpButton7.name = "status 2";
+        stepHelpButton7.innerHTML = "I need more help!";
+
+    };
+
+
+};
+
+
+stepReveal2.onclick = function () {
+
+    stepHide2a.style.display = 'none';
+    stepHide2.style.display = 'none';
+    stepExplanation2.innerHTML = "The case we need to use is the <b>" + dataCase + "</b>.";
+    stepAnswer2.style.display = "";
 
 };
 
@@ -656,16 +719,62 @@ stepReveal4.onclick = function () {
 
 };
 
-stepHelpButton5.onclick = function () {
+stepReveal5.onclick = function () {
 
-    if (dataCase == "partitive") {
-        partitiveHelp();
-    } else if (dataCase == "illative") {
-        illativeHelp();
+    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
+    var rightEnding = "";
+
+    if (dataCase == "partitive" || dataCase == "illative") {
+
+        rightEnding = dataEndings;
     } else {
-        otherCasesHelp();
+
+        for (let i = 0; i < caseEndings.length; i++) {
+            if (caseEndings[i][0] == dataCase) {
+                rightEnding = caseEndings[i][1];
+            }
+        }
+
     };
+
+
+
+    stepHide5.style.display = 'none';
+    stepHide5a.style.display = 'none';
+    stepExplanation5.innerHTML = "The ending for the <i>" + dataCase + "</i> of <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>";
+    stepAnswer5.style.display = "";
+
 };
+
+stepReveal6.onclick = function () {
+
+    stepHide6.style.display = 'none';
+    stepHide6a.style.display = 'none';
+    stepExplanation6.innerHTML = "The right version of the ending in this case is <b>" + dataEndingsFinal + "</b>";
+    stepAnswer6.style.display = "";
+
+
+
+};
+
+stepReveal7.onclick = function () {
+
+    stepHide7a.style.display = 'none';
+    stepHide7.style.display = 'none';
+
+    var explanationText = "";
+    if (dataGradation == "none") {
+        explanationText = "This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
+    } else {
+        explanationText = "This word will undergo the <b>" + dataGradation + "</b> gradation.";
+    };
+
+    stepExplanation7.innerHTML = explanationText;
+    stepAnswer7.style.display = "";
+
+
+};
+
 
 function partitiveHelp() {
 
@@ -749,94 +858,11 @@ function otherCasesHelp() {
 
 };
 
-stepReveal5.onclick = function () {
-
-    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
-    var rightEnding = "";
-
-    if (dataCase == "partitive" || dataCase == "illative") {
-
-        rightEnding = dataEndings;
-    } else {
-
-        for (let i = 0; i < caseEndings.length; i++) {
-            if (caseEndings[i][0] == dataCase) {
-                rightEnding = caseEndings[i][1];
-            }
-        }
-
-    };
 
 
 
-    stepHide5.style.display = 'none';
-    stepHide5a.style.display = 'none';
-    stepExplanation5.innerHTML = "The ending for the <i>" + dataCase + "</i> of <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>";
-    stepAnswer5.style.display = "";
-
-};
-
-stepHelpButton6.onclick = function () {
-
-    tableVocal1.style.display = "";
-    tableVocal2.style.display = "";
-    stepExplanation6.innerHTML = "Look at the <i>vowel harmony</i> table and remember to use the right vowel for the ending."
-
-};
-
-stepReveal6.onclick = function () {
-
-    stepHide6.style.display = 'none';
-    stepHide6a.style.display = 'none';
-    stepExplanation6.innerHTML = "The right version of the ending in this case is <b>" + dataEndingsFinal + "</b>";
-    stepAnswer6.style.display = "";
 
 
-
-};
-
-stepHelpButton7.onclick = function () {
-
-    if (stepHelpButton7.name == "status 2") {
-
-        stepExplanation7.innerHTML = "First, check the status of the last syllable of the stem. Does it goes open > closed, closed > open or remains the same?<br/><br/>If it changes, the consonant(s) right before that syllable change from one column to the other in the same order."
-        stepHelpButton7.innerHTML = "I'm still not sure";
-        stepHelpButton7.name = "status 3";
-
-    } else if (stepHelpButton7.name == "status 3") {
-
-        stepExplanation7.innerHTML = "Ok, so the stem is <i>" + stepAnswer4.innerHTML + "</i> and the stem+ending is <i>" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</i>.<br/><br/>We cut them in syllables:<br/><br/>" + dataStemCut + " and " + dataBeforeGradationCut + "<br/><br/>Then we look at the last syllable from the stem:<br/><br/> " + dataStemCutUnderlined + " and " + dataBeforeGradationCutUnderlined + "<br/><br/>The first one is <b>" + dataStemSyllable + "</b> and is <i>" + dataStemSyllableStatus + "</i> and the second one is <b>" + dataBeforeGradationSyllable + "</b> and is <i>" + dataBeforeGradationSyllableStatus + "</i>.<br/><br/>So from Stem > Word the syllable goes <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>The consonant(s) right before that syllable is <b>" + dataConsonantBefore + "</b> and it needs to also change from <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>In the table you can see that a <b>" + dataConsonantBefore + "</b> in an <i>" + dataStemSyllableStatus + " syllable</i> corresponds to a <b>" + dataConsonantAfter + "</b> in a <i>" + dataBeforeGradationSyllableStatus + " syllable</i><br/><br/>So in this case you need to apply <b>" + dataGradation + "</b>";
-
-    } else {
-
-        tableCons.style.display = "";
-        stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
-        stepHelpButton7.name = "status 2";
-        stepHelpButton7.innerHTML = "I need more help!";
-
-    };
-
-
-};
-
-
-stepReveal7.onclick = function () {
-
-    stepHide7a.style.display = 'none';
-    stepHide7.style.display = 'none';
-
-    var explanationText = "";
-    if (dataGradation == "none") {
-        explanationText = "This word will <i>not</i> undergo any gradation at all.<br/><br/>You can try and type the result at the top of the page";
-    } else {
-        explanationText = "This word will undergo the <b>" + dataGradation + "</b> gradation.";
-    };
-
-    stepExplanation7.innerHTML = explanationText;
-    stepAnswer7.style.display = "";
-
-
-};
 
 
 
