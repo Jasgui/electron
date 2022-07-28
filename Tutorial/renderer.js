@@ -257,6 +257,14 @@ function trainer1() {
     stepPrompt3.innerHTML = "What are the stems for the word we're working with? If you know them, type them below. If not, you can always use the help button.<br/><br/>"
 
     /// RIGHT STEM
+    var rightStem = "";
+    if (dataCase == "partitive") {
+        stepAnswer4.innerHTML = dataStem2;
+        rightStem = dataStem2;
+    } else {
+        stepAnswer4.innerHTML = dataStem1;
+        rightStem = dataStem1;
+    };
 
     stepPrompt4.innerHTML = "Now an easy part: which of the two stems should you use in this case?";
 
@@ -633,6 +641,18 @@ stepHelpButton3.onclick = function () {
 };
 
 stepHelpButton4.onclick = function () {
+
+    if (dataCase == "partitive") {
+
+        stepExplanation4.innerHTML = "The partitive is the only case that uses stem 2... That should help!";
+        hide(stepHelpButton4);
+
+    } else {
+
+        stepExplanation4.innerHTML = "All cases except the partitive use stem 1. Does that help?";
+        hide(stepHelpButton4);
+
+    };
 
 };
 
