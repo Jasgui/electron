@@ -215,27 +215,27 @@ function get_dataWordFinnish_from_dataWordFinnishHighlighted(text) {
 };
 
 
+function show(element) {
+
+    element.style.display = "";
+
+};
+
+function hide(element) {
+
+    element.style.display = 'none';
+
+};
+
 function trainer1() {
 
 
-    var test1 = "kaupp<b>a</b>";
-    var test2 = test1.replace(/<b>/g, '');
-    var test3 = test2.replace(/<\/b>/g, '');
+    show(inputField);
+    show(trainerButton);
+    show(accordion);
 
-    console.log(test2);
-    console.log(test3);
-
-    var test4 = get_dataWordFinnish_from_dataWordFinnishHighlighted("kauff<b>something</b>");
-    console.log(test4);
-
-
-
-    inputField.style.display = "";
-    trainerButton.style.display = "";
-    accordion.style.display = "";
-
-    gridTutorial.style.display = "none";
-    gridTrainer.style.display = "";
+    hide(gridTutorial);
+    show(gridTrainer);
 
     trainerText.innerHTML = "How would you say <b>" + dataPhrase + "</b> in Finnish?";
     inputField.focus();
@@ -245,64 +245,15 @@ function trainer1() {
     stepAnswer1.innerHTML = dataWordFinnish;
     stepPrompt1.innerHTML = "Do you know the Finnish word that means <b><i>" + dataWordEnglish + "</i></b>? If you do, try to type it here. If you need help, use the button.";
 
-    stepInput1.addEventListener("keypress", function (event) {
-
-        if (event.key === "Enter") {
-            event.preventDefault();
-
-            if (stepInput1.value == dataWordFinnish) {
-                stepHide1.style.display = 'none';
-                stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
-                stepAnswer1.style.display = "";
-
-            } else {
-
-                stepHide1.style.display = 'none';
-                stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
-                stepAnswer1.style.display = "";
-
-
-
-            };
-
-
-        }
-
-    });
-
-
     /// CASE
 
     stepAnswer2.innerHTML = dataCase;
     stepPrompt2.innerHTML = "So we are trying to say <i><b>" + dataPhrase + "</b></i> in Finnish.<br/><br/> What case should you use to translate <i>" + dataCaseTranslation + "</i>?<br/><br/>If you need help, use the button.";
 
-
-
-
     /// STEMS
 
     stepAnswer3.innerHTML = dataStem1 + " / " + dataStem2;
     stepPrompt3.innerHTML = "What are the stems for the word we're working with? If you know them, type them below. If not, you can always use the help button.<br/><br/>"
-
-    stepConfirmButton3.onclick = function () {
-
-        stepConfirmButton3_clicked();
-
-
-
-    };
-
-
-    stepInput3b.addEventListener("keypress", function (event) {
-
-        if (event.key === "Enter") {
-            event.preventDefault();
-            stepConfirmButton3_clicked();
-        }
-
-    });
-
-
 
     /// RIGHT STEM
 
@@ -317,22 +268,8 @@ function trainer1() {
 
     stepPrompt4.innerHTML = "Now an easy part: which of the two stems should you use in this case?";
 
-    stepInput4.addEventListener("keypress", function (event) {
-
-        if (event.key === "Enter") {
-
-            stepConfirmButton4_clicked();
-
-        };
-
-    });
-    stepConfirmButton4.onclick = function () {
-        stepConfirmButton4_clicked();
-    };
-
-
-
     /// ENDINGS
+    
     const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
     var rightEnding = "";
 
@@ -353,17 +290,64 @@ function trainer1() {
     stepAnswer5.innerHTML = rightEnding;
     stepPrompt5.innerHTML = "Let's now choose the right endings for that word in that case. As always, help is only one click away.";
 
-
-
-
     /// VOCAL HARMONY
 
     stepAnswer6.innerHTML = dataEndingsFinal;
-
     stepPrompt6.innerHTML = "By now you should know what set of ending you're going to use, but this set may contain 2 different versions or a vowel that needs to be define. Try to type the actual ending:<br/><br/>";
 
+    /// FINDING CONSONANT GRADATION
 
-    stepInput6.addEventListener("keypress", function (event) {
+    stepAnswer7.innerHTML = dataGradation;
+    stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>What consonant gradation (if any) applies here?<br/><br/>";
+
+};
+
+
+stepInput1.addEventListener("keypress", function (event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+
+        if (stepInput1.value == dataWordFinnish) {
+            stepHide1.style.display = 'none';
+            stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
+            stepAnswer1.style.display = "";
+
+        } else {
+
+            stepHide1.style.display = 'none';
+            stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
+            stepAnswer1.style.display = "";
+
+
+
+        };
+
+
+    }
+
+});
+
+stepInput3b.addEventListener("keypress", function (event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+        stepConfirmButton3_clicked();
+    }
+
+});
+
+stepInput4.addEventListener("keypress", function (event) {
+
+    if (event.key === "Enter") {
+
+        stepConfirmButton4_clicked();
+
+    };
+
+});
+
+stepInput6.addEventListener("keypress", function (event) {
 
         if (event.key === "Enter") {
 
@@ -372,20 +356,6 @@ function trainer1() {
         };
 
     });
-    stepConfirmButton6.onclick = function () {
-        stepConfirmButton6_clicked();
-    };
-
-
-
-    /// FINDING CONSONANT GRADATION
-
-    stepAnswer7.innerHTML = dataGradation;
-    stepPrompt7.innerHTML = "So you have a stem and and ending. Combined together they give <b>*" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</b><br/><br/>I put a little * before to remind you this word might not exist like that.<br/><br/>What consonant gradation (if any) applies here?<br/><br/>";
-
-
-
-};
 
 
 stepConfirmButton1.onclick = function () {
@@ -868,10 +838,6 @@ function otherCasesHelp() {
 
 trainerButton.onclick = function () {
 
-    console.log(inputField.value);
-    console.log("or");
-    console.log(inputField.innerHTML);
-
 
     if (inputField.value == dataResult) {
 
@@ -882,7 +848,6 @@ trainerButton.onclick = function () {
 
 };
 
-
 inputField.addEventListener("keypress", function (event) {
 
     if (event.key === "Enter") {
@@ -892,6 +857,7 @@ inputField.addEventListener("keypress", function (event) {
 
 });
 
+/*
 
 menuStep1.onclick = function () {
 
@@ -945,6 +911,7 @@ function nextButtonParameters(text, destination, display) {
     };
 
 };
+*/
 
 
 /*
@@ -977,6 +944,7 @@ nextButton.onclick = function () {
     console.log("bnjsq");
 }
 
+/*
 function activateMenu(text) {
 
     if (text == "intro") {
@@ -1010,9 +978,7 @@ function activateMenu(text) {
         menuStep5.className = "section"
     };
 
-};
-
-
+};*/
 
 
 /*yesButton.onclick = function () {
