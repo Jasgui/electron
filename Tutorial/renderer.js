@@ -135,6 +135,7 @@ const stepConfirmButton7 = document.getElementById('stepConfirmButton7');
 const stepHide7a = document.getElementById('stepHide7a');
 
 const accordion = document.getElementById('accordion');
+const tableCaseMeaning = document.getElementById('tableCaseMeaning');
 ///Initialisation
 
 
@@ -610,6 +611,8 @@ stepHelpButton1.onclick = function () {
 stepHelpButton2.onclick = function () {
 
     hide(stepHelpButton2);
+    hideAllTables();
+    show(tableCaseMeaning);
     stepExplanation2.innerHTML = "I have opened a list of cases with their basic meanings on the right. Try to choose the right one with the help of the table.<br/><br/> If you're still having issues, the reveal <i class='eye slash icon'></i> button is there for you.";
 
 };
@@ -887,6 +890,7 @@ function hideAllTables() {
     hide(tableStems);
     hide(tableVocal1);
     hide(tableVocal2);
+    hide(tableCaseMeaning);
 
 };
 
