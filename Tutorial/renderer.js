@@ -257,35 +257,9 @@ function trainer1() {
 
     /// RIGHT STEM
 
-    var rightStem = "";
-    if (dataCase == "partitive") {
-        stepAnswer4.innerHTML = dataStem2;
-        rightStem = dataStem2;
-    } else {
-        stepAnswer4.innerHTML = dataStem1;
-        rightStem = dataStem1;
-    };
-
     stepPrompt4.innerHTML = "Now an easy part: which of the two stems should you use in this case?";
 
     /// ENDINGS
-    
-    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
-    var rightEnding = "";
-
-    if (dataCase == "partitive" || dataCase == "illative") {
-
-        rightEnding = dataEndings;
-
-    } else {
-
-        for (let i = 0; i < caseEndings.length; i++) {
-            if (caseEndings[i][0] == dataCase) {
-                rightEnding = caseEndings[i][1];
-            }
-        }
-
-    };
 
     stepAnswer5.innerHTML = rightEnding;
     stepPrompt5.innerHTML = "Let's now choose the right endings for that word in that case. As always, help is only one click away.";
@@ -349,13 +323,13 @@ stepInput4.addEventListener("keypress", function (event) {
 
 stepInput6.addEventListener("keypress", function (event) {
 
-        if (event.key === "Enter") {
+    if (event.key === "Enter") {
 
-            stepConfirmButton6_clicked();
+        stepConfirmButton6_clicked();
 
-        };
+    };
 
-    });
+});
 
 
 stepConfirmButton1.onclick = function () {
@@ -460,6 +434,14 @@ function stepConfirmButton3_clicked() {
 };
 
 function stepConfirmButton4_clicked() {
+    var rightStem = "";
+    if (dataCase == "partitive") {
+        stepAnswer4.innerHTML = dataStem2;
+        rightStem = dataStem2;
+    } else {
+        stepAnswer4.innerHTML = dataStem1;
+        rightStem = dataStem1;
+    };
 
 
     var stepinput_clean = "";
@@ -500,6 +482,24 @@ function stepConfirmButton4_clicked() {
 };
 
 function stepConfirmButton5_clicked() {
+
+    const caseEndings = [["nominative", "-"], ["accusative", "-n"], ["genitive", "-n"], ["inessive", "-ssa/ssä"], ["elative", "-sta/stä"], ["adessive", "-lla/llä"], ["ablative", "-lta/ltä"], ["allative", "-lle"], ["essive", "-na/nä"], ["translative", "-ksi"]];
+    var rightEnding = "";
+
+    if (dataCase == "partitive" || dataCase == "illative") {
+
+        rightEnding = dataEndings;
+
+    } else {
+
+        for (let i = 0; i < caseEndings.length; i++) {
+            if (caseEndings[i][0] == dataCase) {
+                rightEnding = caseEndings[i][1];
+            }
+        }
+
+    };
+
 
     if (stepInput5.value == rightEnding) {
 
