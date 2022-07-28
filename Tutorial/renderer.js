@@ -624,6 +624,7 @@ stepHelpButton3.onclick = function () {
         stepExplanation3.innerHTML = "On the right you can have a look at the different types of words and try to find the one that matches here. Then, try to type the stems again.<br/><br/>If you need more help, press the help button again.";
         stepHelpButton3.innerHTML = "I need more help";
         stepHelpButton3.name = "status 2";
+        hideAllTables();
         show(tableStems);
 
     };
@@ -648,6 +649,7 @@ stepHelpButton5.onclick = function () {
 
 stepHelpButton6.onclick = function () {
 
+    hideAllTables();
     show(tableVocal1);
     show(tableVocal2);
     stepExplanation6.innerHTML = "Look at the <i>vowel harmony</i> table and remember to use the right vowel for the ending."
@@ -670,6 +672,7 @@ stepHelpButton7.onclick = function () {
 
     } else {
 
+        hideAllTables();
         show(tableCons);
         stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
         stepHelpButton7.name = "status 2";
@@ -776,7 +779,8 @@ function partitiveHelp() {
         stepHelpButton5.name = "status 3";
 
     } else if (stepHelpButton5.name == "status 3") {
-
+        hideAllTables();
+        show(tableCaseEndings);
         show(tablePartitive);
         stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>partitive</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
         stepHelpButton5.innerHTML = "No, more help needed!";
@@ -792,6 +796,7 @@ function partitiveHelp() {
 
     } else {
 
+        hideAllTables();
         show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
@@ -809,7 +814,8 @@ function illativeHelp() {
         stepHelpButton5.name = "status 3";
 
     } else if (stepHelpButton5.name == "status 3") {
-
+        hideAllTables();
+        show(tableCaseEndings);
         show(tableIllative);
         stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>illative</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
         stepHelpButton5.innerHTML = "No, more help needed!";
@@ -824,7 +830,7 @@ function illativeHelp() {
         stepExplanation5.innerHTML = "The endings for the <i>illative</i> for " + dataStemHighlighted + " is <b>" + dataEndings + "</b> because " + dataReason + ".";
 
     } else {
-
+        hideAllTables();
         show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
@@ -843,7 +849,7 @@ function otherCasesHelp() {
         hide(stepHelpButton5);
 
     } else {
-
+        hideAllTables();
         show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
@@ -852,7 +858,18 @@ function otherCasesHelp() {
 
 };
 
+function hideAllTables() {
 
+    hide(tableCaseEndings);
+    hide(tableCons);
+    hide(tableIllative);
+    hide(tablePartitive);
+    hide(tableStems);
+    hide(tableVocal1);
+    hide(tableVocal2);
+    hide(table)
+
+};
 
 
 
