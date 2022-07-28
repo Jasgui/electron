@@ -131,7 +131,7 @@ var datajson = [{
         "dataReason": "",
         "dataStemHighlighted": "",
         "dataEndingsFinal": "-llä",
-        "dataGradation": "",
+        "dataGradation": "none",
         "dataStemCut": "|per|hee|-",
         "dataBeforeGradationCut": "*|per|he|el|lä|",
         "dataStemCutUnderlined": "|per|<u>he</u>|-",

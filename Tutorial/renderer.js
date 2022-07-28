@@ -305,24 +305,14 @@ function trainer1() {
 
 stepInput1.addEventListener("keypress", function (event) {
 
+    stepConfirmButton1_clicked();
+
     if (event.key === "Enter") {
         event.preventDefault();
-
-        if (stepInput1.value == dataWordFinnish) {
-            hide(stepHide1);
-            show(stepAnswer1);
-            stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
-
-        } else {
-
-            hide(stepHide1);
-            show(stepAnswer1);
-            stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
-
-        };
+        stepConfirmButton1_clicked();
 
 
-    }
+    };
 
 });
 
@@ -386,6 +376,19 @@ stepConfirmButton7.onclick = function () {
 
 
 function stepConfirmButton1_clicked() {
+    if (stepInput1.value == dataWordFinnish) {
+        hide(stepHide1);
+        show(stepAnswer1);
+        stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
+        hide(stepConfirmButton1);
+
+    } else {
+
+        hide(stepHide1);
+        show(stepAnswer1);
+        stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
+        hide(stepConfirmButton1);
+    };
 
 };
 
