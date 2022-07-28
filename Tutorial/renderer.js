@@ -76,6 +76,7 @@ const stepReveal2 = document.getElementById('stepReveal2');
 const stepConfirmButton2 = document.getElementById('stepConfirmButton2');
 
 const stepHide1 = document.getElementById('stepHide1');
+const stepHide1a = document.getElementById('stepHide1a');
 const stepHide2 = document.getElementById('stepHide2');
 const stepHide2a = document.getElementById('stepHide2a');
 
@@ -588,36 +589,40 @@ function stepConfirmButton7_clicked() {
 
 
 stepHelpButton1.onclick = function () {
-    stepHide1.style.display = 'none';
+
+    hide(stepHide1);
+    show(stepAnswer1);
+    hide(stepHide1a);
     stepExplanation1.innerHTML = "The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
-    stepAnswer1.style.display = "";
 
 };
 
 stepHelpButton2.onclick = function () {
 
+    hide(stepHelpButton2);
     stepExplanation2.innerHTML = "I have opened a list of cases with their basic meanings on the right. Try to choose the right one with the help of the table.<br/><br/> If you're still having issues, the reveal <i class='eye slash icon'></i> button is there for you.";
 
 };
 
 stepHelpButton3.onclick = function () {
 
-    if (stepHelpButton3.name == "more help") {
+    if (stepHelpButton3.name == "status 2") {
 
         stepExplanation3.innerHTML = "Because <i>" + dataWordFinnishHighlighted + "</i> " + dataTypeReason + ", it belongs to group " + dataType + ". I have highlighted it in the table. Does that help?"
         document.getElementById("type" + dataType).className = "warning";
         stepHelpButton3.innerHTML = "I still need help";
-        stepHelpButton3.name = "last help";
+        stepHelpButton3.name = "status 3";
 
-    } else if (stepHelpButton3.name == "last help") {
+    } else if (stepHelpButton3.name == "status 3") {
 
         stepExplanation3.innerHTML = "So for this type, " + dataTypeExplanation + ".<br/><br/>Try again typing the stems or use the reveal <i class='eye slash icon'></i> button.";
+        hide(stepHelpButton3);
 
     } else {
         stepExplanation3.innerHTML = "On the right you can have a look at the different types of words and try to find the one that matches here. Then, try to type the stems again.<br/><br/>If you need more help, press the help button again.";
         stepHelpButton3.innerHTML = "I need more help";
-        stepHelpButton3.name = "more help";
-        tableStems.style.display = "";
+        stepHelpButton3.name = "status 2";
+        show(tableStems);
 
     };
 
@@ -641,10 +646,10 @@ stepHelpButton5.onclick = function () {
 
 stepHelpButton6.onclick = function () {
 
-    tableVocal1.style.display = "";
-    tableVocal2.style.display = "";
+    show(tableVocal1);
+    show(tableVocal2);
     stepExplanation6.innerHTML = "Look at the <i>vowel harmony</i> table and remember to use the right vowel for the ending."
-
+    hide(stepHelpButton6);
 };
 
 stepHelpButton7.onclick = function () {
@@ -658,6 +663,8 @@ stepHelpButton7.onclick = function () {
     } else if (stepHelpButton7.name == "status 3") {
 
         stepExplanation7.innerHTML = "Ok, so the stem is <i>" + stepAnswer4.innerHTML + "</i> and the stem+ending is <i>" + stepAnswer4.innerHTML.slice(0, -1) + stepAnswer6.innerHTML.slice(1) + "</i>.<br/><br/>We cut them in syllables:<br/><br/>" + dataStemCut + " and " + dataBeforeGradationCut + "<br/><br/>Then we look at the last syllable from the stem:<br/><br/> " + dataStemCutUnderlined + " and " + dataBeforeGradationCutUnderlined + "<br/><br/>The first one is <b>" + dataStemSyllable + "</b> and is <i>" + dataStemSyllableStatus + "</i> and the second one is <b>" + dataBeforeGradationSyllable + "</b> and is <i>" + dataBeforeGradationSyllableStatus + "</i>.<br/><br/>So from Stem > Word the syllable goes <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>The consonant(s) right before that syllable is <b>" + dataConsonantBefore + "</b> and it needs to also change from <i>" + dataStemSyllableStatus + " > " + dataBeforeGradationSyllableStatus + "</i><br/><br/>In the table you can see that a <b>" + dataConsonantBefore + "</b> in an <i>" + dataStemSyllableStatus + " syllable</i> corresponds to a <b>" + dataConsonantAfter + "</b> in a <i>" + dataBeforeGradationSyllableStatus + " syllable</i><br/><br/>So in this case you need to apply <b>" + dataGradation + "</b>";
+
+        hide(stepHelpButton7);
 
     } else {
 
@@ -774,21 +781,22 @@ function partitiveHelp() {
 
     } else if (stepHelpButton5.name == "status 3") {
 
-        tablePartitive.style.display = "";
+        show(tablePartitive);
         stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>partitive</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
         stepHelpButton5.innerHTML = "No, more help needed!";
         stepHelpButton5.name = "status 4";
 
     } else if (stepHelpButton5.name == "status 4") {
 
-        stepHide5.style.display = 'none';
-        stepHide5a.style.display = 'none';
+        hide(stepHelpButton5);
+        hide(stepHide5);
+        hide(stepHide5a);
+        show(stepAnswer5);
         stepExplanation5.innerHTML = "The endings for the <i>partitive</i> for " + dataStemHighlighted + " is <b>" + dataEndings + "</b> because " + dataReason + ".";
-        stepAnswer5.style.display = "";
 
     } else {
 
-        tableCaseEndings.style.display = "";
+        show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
 
@@ -806,21 +814,22 @@ function illativeHelp() {
 
     } else if (stepHelpButton5.name == "status 3") {
 
-        tableIllative.style.display = "";
+        show(tableIllative);
         stepExplanation5.innerHTML = "It's a little tricky when it comes to the <i>illative</i> endings. The rules are now on the right side. Try to see if you can find the right ending."
         stepHelpButton5.innerHTML = "No, more help needed!";
         stepHelpButton5.name = "status 4";
 
     } else if (stepHelpButton5.name == "status 4") {
 
-        stepHide5.style.display = 'none';
-        stepHide5a.style.display = 'none';
+        hide(stepHelpButton5);
+        hide(stepHide5);
+        hide(stepHide5a);
+        show(stepAnswer5);
         stepExplanation5.innerHTML = "The endings for the <i>illative</i> for " + dataStemHighlighted + " is <b>" + dataEndings + "</b> because " + dataReason + ".";
-        stepAnswer5.style.display = "";
 
     } else {
 
-        tableCaseEndings.style.display = "";
+        show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
 
@@ -835,10 +844,11 @@ function otherCasesHelp() {
 
         document.getElementById("ending-" + dataCase).className = "warning";
         stepExplanation5.innerHTML = "The row with the right ending for the <i>" + dataCase + "</i> is highlighted is the table. If that's not enough, use the reveal <i class='eye slash icon'></i> button.";
+        hide(stepHelpButton5);
 
     } else {
 
-        tableCaseEndings.style.display = "";
+        show(tableCaseEndings);
         stepExplanation5.innerHTML = "On the right you can see a list of the different cases with their endings. This should help.";
         stepHelpButton5.name = "status 2";
 
