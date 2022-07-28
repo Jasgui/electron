@@ -1,3 +1,8 @@
+
+var v = libvoikko.init("fi");
+v.analyze("tulen");
+
+
 //////////////////////////////////
 
 const mainText = document.getElementById('mainText');
