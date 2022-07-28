@@ -1,4 +1,5 @@
 //////////////////////////////////
+
 const mainText = document.getElementById('mainText');
 const helperText = document.getElementById('helperText');
 
@@ -137,9 +138,6 @@ const stepHide7a = document.getElementById('stepHide7a');
 const accordion = document.getElementById('accordion');
 const tableCaseMeaning = document.getElementById('tableCaseMeaning');
 ///Initialisation
-
-
-
 
 console.log(datajson);
 
@@ -905,9 +903,14 @@ trainerButton.onclick = function () {
 
     if (inputField.value == dataResult) {
 
+
+
         $('.ui.basic.modal')
             .modal('show');
+
     };
+
+
 
 
 };
