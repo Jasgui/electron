@@ -867,7 +867,6 @@ function hideAllTables() {
     hide(tableStems);
     hide(tableVocal1);
     hide(tableVocal2);
-    hide(table)
 
 };
 
