@@ -302,17 +302,15 @@ stepInput1.addEventListener("keypress", function (event) {
         event.preventDefault();
 
         if (stepInput1.value == dataWordFinnish) {
-            stepHide1.style.display = 'none';
+            hide(stepHide1);
+            show(stepAnswer1);
             stepExplanation1.innerHTML = "You're absolutely right! The Finnish word that means <b><i>" + dataWordEnglish + "</i></b> is <b>" + dataWordFinnish + "</b><br/><br/>You can continue with the next steps.";
-            stepAnswer1.style.display = "";
 
         } else {
 
-            stepHide1.style.display = 'none';
+            hide(stepHide1);
+            show(stepAnswer1);
             stepExplanation1.innerHTML = "Oops, that's not the word I was expecting. I was thinking of <b>" + dataWordFinnish + "</b>. We'll use this one, ok?<br/><br/> You can continue with the next steps.";
-            stepAnswer1.style.display = "";
-
-
 
         };
 
@@ -388,10 +386,10 @@ function stepConfirmButton2_clicked() {
 
     if (stepInput2.value == dataCase) {
 
-        stepHide2.style.display = 'none';
-        stepHide2a.style.display = 'none';
+        hide(stepHide2);
+        hide(stepHide2a);
+        show(stepAnswer2);
         stepExplanation2.innerHTML = "You're right! The case we need to use is the <b>" + dataCase + "</b>.";
-        stepAnswer2.style.display = "";
 
     } else {
 
@@ -426,10 +424,10 @@ function stepConfirmButton3_clicked() {
 
     if (step1input_clean == dataStem1_clean && step2input_clean == dataStem2_clean) {
 
-        stepHide3.style.display = 'none';
-        stepHide3a.style.display = 'none';
+        hide(stepHide3);
+        hide(stepHide3a);
+        show(stepAnswer3);
         stepExplanation3.innerHTML = "Exactly! The stems for <i>" + dataWordFinnish + "</i> are <b>" + dataStem1 + " / " + dataStem2 + "</b>.";
-        stepAnswer3.style.display = "";
 
     } else if (step1input_clean == dataStem1_clean) {
 
@@ -476,10 +474,10 @@ function stepConfirmButton4_clicked() {
 
     if (stepinput_clean == answer_clean) {
 
-        stepHide4.style.display = 'none';
-        stepHide4a.style.display = 'none';
+        hide(stepHide4);
+        hide(stepHide4a);
+        show(stepAnswer4);
         stepExplanation4.innerHTML = "Yes! The right stem to use here is <b>" + rightStem + "</b>."
-        stepAnswer4.style.display = "";
 
     } else if (stepinput_clean == dataStem1_clean || stepinput_clean == dataStem2_clean) {
 
@@ -487,9 +485,10 @@ function stepConfirmButton4_clicked() {
             var explanationText = "It looks like you chose the wrong stem.<br/><br/>For the <i>partitive<i/> you always use stem 2: <b>" + dataStem2 + "</b>.";
         } else {
             var explanationText = "<i class='exclamation triangle icon'></i> It looks like you chose the wrong stem.<br/><br/>Stem 2 is only used for the <i>partitive</i>. For all other cases, including the <i>" + dataCase + "</i> you need to use stem 1: <b>" + dataStem1 + "</b>.";
-            stepHide4.style.display = 'none';
-            stepHide4a.style.display = 'none';
-            stepAnswer4.style.display = "";
+
+            hide(stepHide4);
+            hide(stepHide4a);
+            show(stepAnswer4);
         };
 
         stepExplanation4.innerHTML = explanationText;
@@ -522,10 +521,11 @@ function stepConfirmButton5_clicked() {
 
     if (stepInput5.value == rightEnding) {
 
-        stepHide5a.style.display = 'none';
-        stepHide5.style.display = 'none';
+
+        hide(stepHide5);
+        hide(stepHide5a);
+        show(stepAnswer5);
         stepExplanation5.innerHTML = "Yes! The ending for the <i>" + dataCase + "</i> of the word <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>.";
-        stepAnswer5.style.display = "";
 
     } else {
 
@@ -548,10 +548,11 @@ function stepConfirmButton6_clicked() {
 
     if (stepinput_clean == dataEndingsFinal_clean) {
 
-        stepHide6a.style.display = 'none';
-        stepHide6.style.display = 'none';
+
+        hide(stepHide6);
+        hide(stepHide6a);
+        show(stepAnswer6);
         stepExplanation6.innerHTML = "Exact! The ending after applying the <i>vowel harmony</i> is <b>" + dataEndingsFinal + "</b>.";
-        stepAnswer6.style.display = "";
 
     } else {
 
@@ -566,8 +567,10 @@ function stepConfirmButton7_clicked() {
 
     if (stepInput7.value == dataGradation) {
 
-        stepHide7a.style.display = 'none';
-        stepHide7.style.display = 'none';
+
+        hide(stepHide7);
+        hide(stepHide7a);
+        show(stepAnswer7);
 
         var explanationText = "";
         if (dataGradation == "none") {
@@ -577,7 +580,6 @@ function stepConfirmButton7_clicked() {
         };
 
         stepExplanation7.innerHTML = explanationText;
-        stepAnswer7.style.display = "";
 
     } else {
 
@@ -668,7 +670,7 @@ stepHelpButton7.onclick = function () {
 
     } else {
 
-        tableCons.style.display = "";
+        show(tableCons);
         stepExplanation7.innerHTML = "The table on the right lists the different types of consonant gradation. Doesn't that help you?";
         stepHelpButton7.name = "status 2";
         stepHelpButton7.innerHTML = "I need more help!";
@@ -681,19 +683,19 @@ stepHelpButton7.onclick = function () {
 
 stepReveal2.onclick = function () {
 
-    stepHide2a.style.display = 'none';
-    stepHide2.style.display = 'none';
+    hide(stepHide2);
+    hide(stepHide2a);
+    show(stepAnswer2);
     stepExplanation2.innerHTML = "The case we need to use is the <b>" + dataCase + "</b>.";
-    stepAnswer2.style.display = "";
 
 };
 
 stepReveal3.onclick = function () {
 
-    stepHide3.style.display = 'none';
-    stepHide3a.style.display = 'none';
+    hide(stepHide3);
+    hide(stepHide3a);
+    show(stepAnswer3);
     stepExplanation3.innerHTML = "The stems for the words are <b>" + dataStem1 + " / " + dataStem2 + "</b>."
-    stepAnswer3.style.display = "";
 
 };
 
@@ -706,11 +708,10 @@ stepReveal4.onclick = function () {
         rightStem = dataStem1;
     };
 
-
-    stepHide4.style.display = 'none';
-    stepHide4a.style.display = 'none';
+    hide(stepHide4);
+    hide(stepHide4a);
+    show(stepAnswer4);
     stepExplanation4.innerHTML = "The stem for the <i>" + dataCase + "</i> is <b>" + rightStem + "</b>.";
-    stepAnswer4.style.display = "";
 
 };
 
@@ -732,30 +733,26 @@ stepReveal5.onclick = function () {
 
     };
 
-
-
-    stepHide5.style.display = 'none';
-    stepHide5a.style.display = 'none';
+    hide(stepHide5);
+    hide(stepHide5a);
+    show(stepAnswer5);
     stepExplanation5.innerHTML = "The ending for the <i>" + dataCase + "</i> of <i>" + dataWordFinnish + "</i> is <b>" + rightEnding + "</b>";
-    stepAnswer5.style.display = "";
 
 };
 
 stepReveal6.onclick = function () {
 
-    stepHide6.style.display = 'none';
-    stepHide6a.style.display = 'none';
+    hide(stepHide6);
+    hide(stepHide6a);
+    show(stepAnswer6);
     stepExplanation6.innerHTML = "The right version of the ending in this case is <b>" + dataEndingsFinal + "</b>";
-    stepAnswer6.style.display = "";
-
-
 
 };
 
 stepReveal7.onclick = function () {
-
-    stepHide7a.style.display = 'none';
-    stepHide7.style.display = 'none';
+    hide(stepHide7);
+    hide(stepHide7a);
+    show(stepAnswer7);
 
     var explanationText = "";
     if (dataGradation == "none") {
@@ -765,7 +762,6 @@ stepReveal7.onclick = function () {
     };
 
     stepExplanation7.innerHTML = explanationText;
-    stepAnswer7.style.display = "";
 
 
 };
@@ -953,16 +949,16 @@ menuTutorial.onclick = function () {
 
 menuTrainer.onclick = function () {
 
-    gridTrainer.style.display = "";
-    gridTutorial.style.display = "none";
+    show(gridTrainer);
+    hide(gridTutorial);
     trainer1();
 
 };
 
 menuHome.onclick = function () {
 
-    gridTutorial.style.display = "";
-    gridTrainer.style.display = 'none';
+    show(gridTutorial);
+    hide(gridTrainer);
     home();
 
 };
