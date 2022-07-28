@@ -141,7 +141,7 @@ const tableCaseMeaning = document.getElementById('tableCaseMeaning');
 
 console.log(datajson);
 
-var number = getRandomInt(0, 2);
+var number = getRandomInt(0, 4);
 
 console.log(number);
 console.log(datajson[number]);
